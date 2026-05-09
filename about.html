@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — ELARA Photography</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#f7f4ef;--warm:#fdfcfa;--dark:#1c1a17;--mid:#6b6760;--line:#d4d0c8;
+  --accent:#8a7460;--accent-l:#c4b09a;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --nav:64px;--ease:.4s cubic-bezier(.25,.46,.45,.94)
+}
+html{scroll-behavior:smooth}
+body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;z-index:100;background:rgba(253,252,250,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:.25em;color:var(--dark);text-decoration:none}
+.nav-links{display:flex;list-style:none;gap:2.5rem}
+.nav-links a{font-family:var(--sans);font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;position:relative;transition:color var(--ease)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--dark);transform:scaleX(0);transition:transform var(--ease);transform-origin:left}
+.nav-links a:hover,.nav-links a.active{color:var(--dark)}
+.nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
+.nav-menu-btn{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-menu-btn span{display:block;width:24px;height:1px;background:var(--dark)}
+.mm{position:fixed;inset:0;background:var(--warm);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform .5s cubic-bezier(.76,0,.24,1)}
+.mm.open{transform:translateY(0)}
+.mm ul{list-style:none;text-align:center}
+.mm ul li{margin:1.5rem 0}
+.mm ul li a{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--dark);text-decoration:none;transition:opacity var(--ease)}
+.mm ul li a:hover{opacity:.5}
+.mm-x{position:absolute;top:1.5rem;right:2rem;font-size:1.2rem;background:none;border:none;cursor:pointer;color:var(--mid)}
+/* PAGE HERO */
+.page-hero{height:55vh;min-height:380px;position:relative;margin-top:var(--nav);overflow:hidden}
+.ph-bg{position:absolute;inset:0;background:linear-gradient(150deg,#c8bfb0,#8a7d6c 60%,#5c4f3e)}
+.ph-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,26,23,.55),rgba(28,26,23,.1));display:flex;flex-direction:column;justify-content:flex-end;padding:4rem}
+.ph-overlay .label{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.75rem}
+.ph-overlay h1{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1.1}
+.ph-overlay h1 em{font-style:italic;color:var(--accent-l)}
+/* ABOUT */
+.about{padding:5rem 4rem;max-width:1200px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:5rem;align-items:start}
+.portrait-img{width:100%;aspect-ratio:3/4;border-radius:2px;margin-bottom:1.5rem;background:linear-gradient(140deg,#d4c5b0,#8a7460)}
+.detail{display:flex;justify-content:space-between;padding:.75rem 0;border-top:1px solid var(--line);font-size:.8rem}
+.detail span{color:var(--mid)}
+.detail strong{font-weight:400;color:var(--dark)}
+.intro{font-family:var(--serif);font-size:1.5rem;font-weight:300;line-height:1.5;color:var(--dark);margin-bottom:1.5rem}
+.about-text p{font-size:.9rem;color:var(--mid);margin-bottom:1.25rem;line-height:1.8}
+blockquote{border-left:2px solid var(--accent-l);padding-left:1.5rem;margin:2.5rem 0;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--mid);line-height:1.6}
+blockquote cite{display:block;margin-top:.75rem;font-size:.75rem;font-style:normal;font-family:var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--line)}
+.btn{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);background:var(--dark);text-decoration:none;padding:1rem 2.5rem;border:none;cursor:pointer;transition:background var(--ease),letter-spacing var(--ease);margin-top:1rem}
+.btn:hover{background:var(--accent);letter-spacing:.22em}
+/* SERVICES */
+.services{background:var(--cream);padding:5rem 4rem}
+.sec-title{font-family:var(--serif);font-size:2rem;font-weight:300;font-style:italic;text-align:center;color:var(--dark);margin-bottom:3.5rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto}
+.svc-card{padding:2rem 1.5rem;border:1px solid var(--line);background:var(--warm);text-align:center;transition:border-color var(--ease),transform var(--ease)}
+.svc-card:hover{border-color:var(--accent-l);transform:translateY(-4px)}
+.svc-icon{font-size:1.4rem;color:var(--accent);margin-bottom:1.25rem}
+.svc-card h3{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--dark);margin-bottom:.75rem}
+.svc-card p{font-size:.82rem;color:var(--mid);line-height:1.7;margin-bottom:1.25rem}
+.svc-price{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+/* PRESS */
+.press{padding:4rem;text-align:center}
+.press-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:1rem}
+.press-row span{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--line);transition:color var(--ease)}
+.press-row span:hover{color:var(--accent)}
+/* FOOTER */
+.footer{padding:3rem 4rem;border-top:1px solid var(--line);background:var(--warm)}
+.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.2em;color:var(--dark)}
+.f-copy{font-size:.75rem;color:var(--line)}
+.f-links{display:flex;gap:1.5rem}
+.f-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color var(--ease)}
+.f-links a:hover{color:var(--dark)}
+@media(max-width:900px){
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-menu-btn{display:flex}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .about{padding:3rem 2rem}
+  .services{padding:3rem 2rem}
+  .press{padding:3rem 2rem}
+  .footer{padding:2rem}
+  .fi{flex-direction:column;text-align:center}
+  .ph-overlay{padding:2rem}
+}
+@media(max-width:540px){
+  .svc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">ELARA</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="mBtn" aria-label="Open menu"><span></span><span></span></button>
+</nav>
+
+<div class="mm" id="mm">
+  <button class="mm-x" id="mX">&#x2715;</button>
+  <ul>
+    <li><a href="index.html">Portfolio</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<div class="page-hero">
+  <div class="ph-bg"></div>
+  <div class="ph-overlay">
+    <p class="label">The story behind the lens</p>
+    <h1>About <em>Elara</em></h1>
+  </div>
+</div>
+
+<section class="about">
+  <div class="about-grid">
+    <div>
+      <div class="portrait-img"></div>
+      <div class="detail"><span>Based in</span><strong>Copenhagen, Denmark</strong></div>
+      <div class="detail"><span>Available for</span><strong>Worldwide Travel</strong></div>
+    </div>
+    <div class="about-text">
+      <p class="intro">I'm Elara — a photographer obsessed with the quiet tension between stillness and motion, and the way light transforms the ordinary into something profound.</p>
+      <p>My work spans editorial, portrait, wedding, and landscape photography. Each genre shares a common thread: I believe the most honest photographs happen when the subject forgets the camera exists entirely.</p>
+      <p>I've had the privilege of shooting across fifteen countries, from the fjords of Norway to the salt flats of Bolivia. What drives me isn't the destination but the in-between — the moments before and after the "shot."</p>
+      <p>When I'm not behind the lens, you'll find me developing film in my darkroom, walking coastal paths, or cooking slow food for anyone who'll sit still long enough.</p>
+      <blockquote>
+        "A photograph is a secret about a secret. The more it tells you, the less you know."
+        <cite>— Diane Arbus</cite>
+      </blockquote>
+      <a href="contact.html" class="btn">Work With Me</a>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2 class="sec-title">What I Offer</h2>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">&#9711;</div>
+      <h3>Portrait Sessions</h3>
+      <p>Intimate, unhurried sessions that reveal character and depth. Shot on location or in my Copenhagen studio.</p>
+      <span class="svc-price">From &euro;350</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#9633;</div>
+      <h3>Wedding Coverage</h3>
+      <p>Full-day documentary storytelling. I disappear into your day and return with photographs you'll keep forever.</p>
+      <span class="svc-price">From &euro;2,400</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#9651;</div>
+      <h3>Editorial &amp; Commercial</h3>
+      <p>Conceptual direction and execution for brands, magazines, and art directors with a vision.</p>
+      <span class="svc-price">On enquiry</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#10022;</div>
+      <h3>Fine Art Prints</h3>
+      <p>Limited edition archival prints, hand-signed and numbered. Available in three sizes.</p>
+      <span class="svc-price">From &euro;180</span>
+    </div>
+  </div>
+</section>
+
+<section class="press">
+  <h2 class="sec-title">As Seen In</h2>
+  <div class="press-row">
+    <span>Vogue Scandinavia</span>
+    <span>ELLE</span>
+    <span>The New York Times</span>
+    <span>Kinfolk</span>
+    <span>Monocle</span>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="fi">
+    <p class="f-logo">ELARA</p>
+    <p class="f-copy">&copy; 2025 Elara Voss Photography</p>
+    <div class="f-links">
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const mm=document.getElementById('mm');
+document.getElementById('mBtn').onclick=()=>{mm.classList.add('open');document.body.style.overflow='hidden'};
+document.getElementById('mX').onclick=()=>{mm.classList.remove('open');document.body.style.overflow=''};
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)';obs.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.svc-card').forEach(el=>{el.style.opacity=0;el.style.transform='translateY(20px)';el.style.transition='opacity .7s ease,transform .7s ease';obs.observe(el)});
+}
+</script>
+</body>
+</html>
