@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — ELARA Photography</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">ELARA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="index.html" onclick="closeMenu()">Portfolio</a></li>
+      <li><a href="about.html" onclick="closeMenu()">About</a></li>
+      <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <section class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="hero-label">Let's create something</p>
+        <h1 class="hero-title">Get in <em>Touch</em></h1>
+        <p class="contact-intro">Whether you're planning a wedding, editorial project, or simply want to talk photography — I'd love to hear from you.</p>
+
+        <div class="contact-info-block">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <a href="mailto:hello@elaravoss.com" class="contact-info-value">hello@elaravoss.com</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Studio</span>
+            <span class="contact-info-value">Copenhagen, Denmark</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Response time</span>
+            <span class="contact-info-value">Within 48 hours</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Available for travel</span>
+            <span class="contact-info-value">Worldwide</span>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Pinterest</a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First name</label>
+              <input type="text" id="fname" name="fname" placeholder="Anna" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" name="lname" placeholder="Lindström" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="anna@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="type">Project type</label>
+            <select id="type" name="type">
+              <option value="">Select a category</option>
+              <option>Portrait session</option>
+              <option>Wedding coverage</option>
+              <option>Editorial / commercial</option>
+              <option>Fine art print enquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Preferred date (if applicable)</label>
+            <input type="text" id="date" name="date" placeholder="e.g. Summer 2025, or flexible" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell me about your project</label>
+            <textarea id="message" name="message" rows="5" placeholder="Share as much detail as you'd like — location, mood, vision..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary form-submit" id="submitBtn">Send Enquiry</button>
+
+          <p class="form-note">Your message is sent directly to my inbox. I respond to every enquiry personally.</p>
+        </form>
+
+        <div class="form-success" id="formSuccess" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3>Message received</h3>
+          <p>Thank you for reaching out. I'll be in touch within 48 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">ELARA</p>
+      <p class="footer-copy">© 2025 Elara Voss Photography. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

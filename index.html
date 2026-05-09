@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELARA — Photography</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">ELARA</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="index.html" onclick="closeMenu()">Portfolio</a></li>
+      <li><a href="about.html" onclick="closeMenu()">About</a></li>
+      <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-label">Photography by</p>
+      <h1 class="hero-title">Elara <em>Voss</em></h1>
+      <p class="hero-subtitle">Capturing moments between light and shadow</p>
+      <a href="#gallery" class="hero-cta">View Portfolio</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-line"></div>
+    </div>
+  </header>
+
+  <!-- GALLERY FILTER -->
+  <section class="gallery-header">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="landscape">Landscape</button>
+      <button class="filter-btn" data-filter="editorial">Editorial</button>
+      <button class="filter-btn" data-filter="wedding">Wedding</button>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <main class="gallery" id="gallery">
+
+    <!-- Row 1 -->
+    <div class="gallery-item tall" data-category="portrait" data-index="0">
+      <div class="gallery-img" style="background: linear-gradient(145deg, #d4c5b0 0%, #a89880 100%);">
+        <div class="img-placeholder portrait-1"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <p class="gallery-title">Golden Hour</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="landscape" data-index="1">
+      <div class="gallery-img" style="background: linear-gradient(160deg, #7a9e9f 0%, #3d5a5b 100%);">
+        <div class="img-placeholder landscape-1"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Landscape</span>
+        <p class="gallery-title">Morning Mist</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="editorial" data-index="2">
+      <div class="gallery-img" style="background: linear-gradient(135deg, #c5b8a8 0%, #8c7b68 100%);">
+        <div class="img-placeholder editorial-1"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Editorial</span>
+        <p class="gallery-title">White Linen</p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="gallery-item wide" data-category="wedding" data-index="3">
+      <div class="gallery-img" style="background: linear-gradient(170deg, #e8ddd0 0%, #c4b09a 100%);">
+        <div class="img-placeholder wedding-1"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Wedding</span>
+        <p class="gallery-title">First Dance</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="portrait" data-index="4">
+      <div class="gallery-img" style="background: linear-gradient(120deg, #b5c4c1 0%, #718f8b 100%);">
+        <div class="img-placeholder portrait-2"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <p class="gallery-title">Studio Study</p>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="gallery-item" data-category="landscape" data-index="5">
+      <div class="gallery-img" style="background: linear-gradient(155deg, #c9d4c5 0%, #7d9475 100%);">
+        <div class="img-placeholder landscape-2"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Landscape</span>
+        <p class="gallery-title">Verdant Valley</p>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="editorial" data-index="6">
+      <div class="gallery-img" style="background: linear-gradient(140deg, #d9c8c8 0%, #9e7878 100%);">
+        <div class="img-placeholder editorial-2"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Editorial</span>
+        <p class="gallery-title">Autumn Bloom</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="wedding" data-index="7">
+      <div class="gallery-img" style="background: linear-gradient(165deg, #ddd5c8 0%, #b09e8a 100%);">
+        <div class="img-placeholder wedding-2"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Wedding</span>
+        <p class="gallery-title">Garden Vows</p>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="gallery-item" data-category="portrait" data-index="8">
+      <div class="gallery-img" style="background: linear-gradient(130deg, #c4bfb0 0%, #8a8270 100%);">
+        <div class="img-placeholder portrait-3"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <p class="gallery-title">Quiet Afternoon</p>
+      </div>
+    </div>
+
+    <div class="gallery-item wide" data-category="landscape" data-index="9">
+      <div class="gallery-img" style="background: linear-gradient(145deg, #b8ccd4 0%, #6a93a3 100%);">
+        <div class="img-placeholder landscape-3"></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Landscape</span>
+        <p class="gallery-title">Coastal Light</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lbClose">✕</button>
+    <button class="lb-prev" id="lbPrev">←</button>
+    <button class="lb-next" id="lbNext">→</button>
+    <div class="lb-content" id="lbContent"></div>
+    <div class="lb-info" id="lbInfo"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">ELARA</p>
+      <p class="footer-copy">© 2025 Elara Voss Photography. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

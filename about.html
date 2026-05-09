@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — ELARA Photography</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">ELARA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Portfolio</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="index.html" onclick="closeMenu()">Portfolio</a></li>
+      <li><a href="about.html" onclick="closeMenu()">About</a></li>
+      <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-img" style="background: linear-gradient(150deg, #c8bfb0 0%, #8a7d6c 60%, #5c4f3e 100%);"></div>
+    <div class="page-hero-overlay">
+      <p class="hero-label">The story behind the lens</p>
+      <h1 class="hero-title">About <em>Elara</em></h1>
+    </div>
+  </div>
+
+  <section class="about-section">
+    <div class="about-grid">
+      <div class="about-portrait">
+        <div class="about-portrait-img" style="background: linear-gradient(140deg, #d4c5b0 0%, #8a7460 100%);"></div>
+        <div class="about-portrait-detail">
+          <span>Based in</span>
+          <strong>Copenhagen, Denmark</strong>
+        </div>
+        <div class="about-portrait-detail">
+          <span>Available for</span>
+          <strong>Worldwide Travel</strong>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="about-intro">I'm Elara — a photographer obsessed with the quiet tension between stillness and motion, and the way light transforms the ordinary into something profound.</p>
+
+        <p>My work spans editorial, portrait, wedding, and landscape photography. Each genre shares a common thread: I believe the most honest photographs happen when the subject forgets the camera exists entirely. My approach is unhurried, intuitive, and deeply personal.</p>
+
+        <p>I've had the privilege of shooting across fifteen countries, from the fjords of Norway to the salt flats of Bolivia. What drives me isn't the destination but the in-between — the moments before and after the "shot."</p>
+
+        <p>When I'm not behind the lens, you'll find me developing film in my darkroom, walking coastal paths, or cooking slow food for anyone who'll sit still long enough.</p>
+
+        <blockquote class="about-quote">
+          "A photograph is a secret about a secret. The more it tells you, the less you know."
+          <cite>— Diane Arbus</cite>
+        </blockquote>
+
+        <a href="contact.html" class="btn-primary">Work With Me</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <h2 class="section-title">What I Offer</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">◯</div>
+        <h3>Portrait Sessions</h3>
+        <p>Intimate, unhurried sessions that reveal character and depth. Shot on location or in my Copenhagen studio.</p>
+        <span class="service-price">From €350</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">◻</div>
+        <h3>Wedding Coverage</h3>
+        <p>Full-day documentary storytelling. I disappear into your day and return with photographs you'll keep forever.</p>
+        <span class="service-price">From €2,400</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">△</div>
+        <h3>Editorial & Commercial</h3>
+        <p>Conceptual direction and execution for brands, magazines, and art directors with a vision.</p>
+        <span class="service-price">On enquiry</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <h3>Fine Art Prints</h3>
+        <p>Limited edition archival prints, hand-signed and numbered. Available in three sizes.</p>
+        <span class="service-price">From €180</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="press-section">
+    <h2 class="section-title">As Seen In</h2>
+    <div class="press-row">
+      <span>Vogue Scandinavia</span>
+      <span>ELLE</span>
+      <span>The New York Times</span>
+      <span>Kinfolk</span>
+      <span>Monocle</span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">ELARA</p>
+      <p class="footer-copy">© 2025 Elara Voss Photography. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
