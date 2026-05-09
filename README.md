@@ -1,4 +1,4 @@
-# ELARA Photography Portfolio
+# Edi Antohe - Portfolio
 
 A Pixieset-style photography portfolio built with pure HTML, CSS, and JavaScript — ready to deploy on GitHub Pages.
 
@@ -9,19 +9,8 @@ portfolio/
 ├── index.html       ← Gallery / home page
 ├── about.html       ← About page with services
 ├── contact.html     ← Contact form
-├── css/
-│   └── style.css    ← All styles
-├── js/
-│   └── main.js      ← Gallery filter, lightbox, form logic
 └── images/          ← Add your photos here
 ```
-
-## Deploy to GitHub Pages
-
-1. Create a new GitHub repository (e.g. `my-photography`)
-2. Push all files to the `main` branch
-3. Go to **Settings → Pages → Source → main branch / root**
-4. Your site will be live at `https://yourusername.github.io/my-photography`
 
 ## Adding Real Photos
 
@@ -43,7 +32,7 @@ Replace the CSS gradient placeholders with real images:
 | Hero subtitle       | `.hero-subtitle` in `index.html`   |
 | Contact email       | `contact.html` → contact-info      |
 | Location & services | `about.html`                       |
-| Color palette       | CSS variables at top of `style.css`|
+| Color palette       | CSS variables                      |
 
 ## Color Variables
 
