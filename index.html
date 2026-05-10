@@ -96,6 +96,11 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .lb-x{top:1rem;right:1.5rem;font-size:1.4rem}
 .lb-p{left:1rem;top:50%;transform:translateY(-50%)}
 .lb-n{right:1rem;top:50%;transform:translateY(-50%)}
+@media(max-width:600px){
+  .lb-p{top:auto;bottom:1.5rem;left:calc(50% - 60px);transform:none;font-size:2rem;padding:1rem 1.5rem;background:rgba(255,255,255,.1);border-radius:50%}
+  .lb-n{top:auto;bottom:1.5rem;right:calc(50% - 60px);transform:none;font-size:2rem;padding:1rem 1.5rem;background:rgba(255,255,255,.1);border-radius:50%}
+  .lb-inner{margin-bottom:80px}
+}
 .lb-inner{display:flex;align-items:center;justify-content:center;width:min(90vw,900px);height:min(85vh,700px);position:relative}
 .lb-inner img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;transition:opacity .25s ease;display:block}
 .lb-info{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap}
@@ -383,6 +388,23 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')   lbStep(-1);
   if (e.key === 'ArrowRight')  lbStep(1);
 });
+
+// Swipe support for mobile
+let swipeStartX = 0;
+let swipeStartY = 0;
+lb.addEventListener('touchstart', e => {
+  swipeStartX = e.touches[0].clientX;
+  swipeStartY = e.touches[0].clientY;
+}, {passive: true});
+lb.addEventListener('touchend', e => {
+  if (!lb.classList.contains('open')) return;
+  const dx = e.changedTouches[0].clientX - swipeStartX;
+  const dy = e.changedTouches[0].clientY - swipeStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    dx < 0 ? lbStep(1) : lbStep(-1);
+  }
+  if (dy > 80 && Math.abs(dx) < 40) closeLightbox();
+}, {passive: true});
 
 // ── BOOT: fetch photos.json ───────────────────────────────────────────────────
 fetch('photos.json')
