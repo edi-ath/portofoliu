@@ -36,7 +36,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .mm-x{position:absolute;top:1.5rem;right:2rem;font-size:1.2rem;background:none;border:none;cursor:pointer;color:var(--mid)}
 /* PAGE HERO */
 .page-hero{height:55vh;min-height:380px;position:relative;margin-top:var(--nav);overflow:hidden}
-.ph-bg{position:absolute;inset:0;background:linear-gradient(150deg,#c8bfb0,#8a7d6c 60%,#5c4f3e)}
+.ph-bg{position:absolute;inset:0;background:url('https://res.cloudinary.com/doia7pbfh/image/upload/v1778430933/IMG_2664_ldh2fh.jpg') center/cover no-repeat}
 .ph-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,26,23,.55),rgba(28,26,23,.1));display:flex;flex-direction:column;justify-content:flex-end;padding:4rem}
 .ph-overlay .label{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.75rem}
 .ph-overlay h1{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1.1}
@@ -44,7 +44,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 /* ABOUT */
 .about{padding:5rem 4rem;max-width:1200px;margin:0 auto}
 .about-grid{display:grid;grid-template-columns:300px 1fr;gap:5rem;align-items:start}
-.portrait-img{width:100%;aspect-ratio:3/4;border-radius:2px;margin-bottom:1.5rem;background:linear-gradient(140deg,#d4c5b0,#8a7460)}
+.portrait-img{width:100%;aspect-ratio:3/4;border-radius:2px;margin-bottom:1.5rem;object-fit:cover;display:block;}
 .detail{display:flex;justify-content:space-between;padding:.75rem 0;border-top:1px solid var(--line);font-size:.8rem}
 .detail span{color:var(--mid)}
 .detail strong{font-weight:400;color:var(--dark)}
@@ -127,7 +127,7 @@ blockquote cite{display:block;margin-top:.75rem;font-size:.75rem;font-style:norm
 <section class="about">
   <div class="about-grid">
     <div>
-      <div class="portrait-img"></div>
+      <img class="portrait-img" src="https://res.cloudinary.com/doia7pbfh/image/upload/v1778430852/IMG_20251223_141850_971_ommgkr.png" alt="Edi Antohe" style="object-fit:cover;">
       <div class="detail"><span>Locatie</span><strong>Galati, Romania</strong></div>
     </div>
     <div class="about-text">
