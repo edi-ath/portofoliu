@@ -1,0 +1,40 @@
+[
+  {
+    "src": "images/majorate/IMG_9819.jpg",
+    "category": "majorate",
+    "title": "Majorat 2024",
+    "size": "tall"
+  },
+  {
+    "src": "images/majorate/IMG_9820.jpg",
+    "category": "majorate",
+    "title": "Seara de Gala"
+  },
+  {
+    "src": "images/masini/IMG_0001.jpg",
+    "category": "masini",
+    "title": "Drive",
+    "size": "wide"
+  },
+  {
+    "src": "images/sedintefoto/IMG_0050.jpg",
+    "category": "sedintefoto",
+    "title": "Studio"
+  },
+  {
+    "src": "images/sufletepereche/IMG_0100.jpg",
+    "category": "sufletepereche",
+    "title": "Impreuna",
+    "size": "tall"
+  },
+  {
+    "src": "images/botez/IMG_0200.jpg",
+    "category": "botez",
+    "title": "Inceput de Viata"
+  },
+  {
+    "src": "images/extra/IMG_0300.jpg",
+    "category": "extra",
+    "title": "Moment"
+  }
+]
