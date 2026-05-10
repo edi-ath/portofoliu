@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Edi Antohe</title>
+<title>Edi Antohe — Fotograf</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -16,10 +16,11 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;z-index:100;transition:background var(--ease),box-shadow var(--ease)}
 .nav.scrolled{background:rgba(253,252,250,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:.25em;color:var(--dark);text-decoration:none}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:.18em;color:var(--dark);text-decoration:none;transition:opacity var(--ease)}
 .nav-logo:hover{opacity:.6}
 .nav-links{display:flex;list-style:none;gap:2.5rem}
 .nav-links a{font-family:var(--sans);font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;position:relative;transition:color var(--ease)}
@@ -28,6 +29,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
 .nav-menu-btn{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px}
 .nav-menu-btn span{display:block;width:24px;height:1px;background:var(--dark)}
+
 /* MOBILE MENU */
 .mm{position:fixed;inset:0;background:var(--warm);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform .5s cubic-bezier(.76,0,.24,1)}
 .mm.open{transform:translateY(0)}
@@ -36,6 +38,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .mm ul li a{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--dark);text-decoration:none;transition:opacity var(--ease)}
 .mm ul li a:hover{opacity:.5}
 .mm-x{position:absolute;top:1.5rem;right:2rem;font-size:1.2rem;background:none;border:none;cursor:pointer;color:var(--mid)}
+
 /* HERO */
 .hero{height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--cream);overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(196,176,154,.25) 0%,transparent 70%)}
@@ -44,13 +47,14 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .hero-label{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem}
 .hero-title{font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);font-weight:300;line-height:1.05;letter-spacing:.02em;color:var(--dark);margin-bottom:1.25rem}
 .hero-title em{font-style:italic;color:var(--accent)}
-.hero-sub{font-family:var(--serif);font-size:clamp(1rem,2vw,1.2rem);font-weight:300;font-style:italic;color:var(--mid);margin-bottom:2.5rem}
+.hero-sub{font-family:var(--serif);font-size:clamp(1rem,2vw,1.2rem);font-weight:300;font-style:italic;color:var(--mid);margin-bottom:2.5rem;max-width:600px}
 .hero-cta{font-family:var(--sans);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--dark);padding-bottom:4px;transition:opacity var(--ease),letter-spacing var(--ease)}
 .hero-cta:hover{opacity:.5;letter-spacing:.24em}
 .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.75rem;animation:fade 1.6s .4s ease both}
 .scroll-hint span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)}
 .scroll-line{width:1px;height:48px;background:var(--line);animation:grow 1.5s 1s ease forwards;transform-origin:top;transform:scaleY(0)}
 @keyframes grow{to{transform:scaleY(1)}}
+
 /* FILTER BAR */
 .gallery-header{padding:0 3rem;position:sticky;top:var(--nav);z-index:50;background:var(--warm);border-bottom:1px solid var(--line)}
 .filter-bar{display:flex;overflow-x:auto;scrollbar-width:none}
@@ -59,53 +63,50 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn::after{content:'';position:absolute;bottom:0;left:1rem;right:1rem;height:1px;background:var(--dark);transform:scaleX(0);transition:transform var(--ease)}
 .filter-btn.active,.filter-btn:hover{color:var(--dark)}
 .filter-btn.active::after{transform:scaleX(1)}
+
 /* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;background:var(--line)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;background:var(--line);min-height:200px}
 .gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream)}
 .gi.tall{grid-row:span 2}
 .gi.wide{grid-column:span 2}
 .gi-img{width:100%;height:100%;min-height:280px;transition:transform .7s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
 .gi.tall .gi-img{min-height:580px}
+.gi-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.gi:hover .gi-img img{transform:scale(1.04)}
 .gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.72) 0%,rgba(28,26,23,0) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity var(--ease)}
 .gi:hover .gi-overlay{opacity:1}
-.gi:hover .gi-img{transform:scale(1.04)}
 .gi-cat{font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.25rem}
 .gi-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:#fff;font-style:italic}
 .gi.hidden{display:none}
-/* SVG placeholder shapes */
-.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.35}
-.ph::before{content:'';display:block;border:1px solid rgba(255,255,255,.6)}
-.p1::before{width:80px;height:120px;border-radius:50px 50px 0 0}
-.p2::before{width:70px;height:100px;border-radius:50%}
-.p3::before{width:90px;height:130px;border-radius:40px 40px 0 0}
-.l1::before{width:140px;height:60px}
-.l2::before{width:120px;height:50px;border-radius:4px}
-.l3::before{width:150px;height:55px;border-radius:0 0 60px 60px}
-.e1::before{width:80px;height:110px}
-.e2::before{width:70px;height:100px;border-radius:0 0 50px 50px}
-.w1::before{width:100px;height:80px;border-radius:50px}
-.w2::before{width:90px;height:90px;border-radius:50%}
+
+/* LOADING STATE */
+.gallery-loading{display:flex;align-items:center;justify-content:center;height:300px;font-family:var(--sans);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);grid-column:1/-1}
+.gallery-empty{display:none;align-items:center;justify-content:center;height:200px;font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--mid);grid-column:1/-1}
+
 /* LIGHTBOX */
 .lb{position:fixed;inset:0;background:rgba(28,26,23,.97);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .lb.open{opacity:1;pointer-events:all}
-.lb-x,.lb-p,.lb-n{position:absolute;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;transition:color .2s;font-family:var(--sans)}
+.lb-x,.lb-p,.lb-n{position:absolute;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;transition:color .2s;font-family:var(--sans);font-size:1.6rem;padding:1rem}
 .lb-x:hover,.lb-p:hover,.lb-n:hover{color:#fff}
-.lb-x{top:1.5rem;right:2rem;font-size:1.4rem}
-.lb-p{left:2rem;top:50%;transform:translateY(-50%);font-size:1.6rem}
-.lb-n{right:2rem;top:50%;transform:translateY(-50%);font-size:1.6rem}
-.lb-img{width:min(85vw,700px);height:min(75vh,560px);border-radius:2px;overflow:hidden;transition:opacity .25s ease}
-.lb-info{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center}
+.lb-x{top:1rem;right:1.5rem;font-size:1.4rem}
+.lb-p{left:1rem;top:50%;transform:translateY(-50%)}
+.lb-n{right:1rem;top:50%;transform:translateY(-50%)}
+.lb-inner{display:flex;align-items:center;justify-content:center;width:min(90vw,900px);height:min(85vh,700px);position:relative}
+.lb-inner img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;transition:opacity .25s ease;display:block}
+.lb-info{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap}
 .lb-icat{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:var(--sans)}
 .lb-ititle{font-family:var(--serif);font-size:1.2rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.85)}
+.lb-counter{font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.35);font-family:var(--sans);margin-top:.25rem}
+
 /* FOOTER */
 .footer{padding:3rem 4rem;border-top:1px solid var(--line);background:var(--warm)}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.f-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.2em;color:var(--dark)}
-.f-copy{font-size:.75rem;color:var(--line);letter-spacing:.05em}
+.f-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.18em;color:var(--dark)}
+.f-copy{font-size:.75rem;color:var(--line)}
 .f-links{display:flex;gap:1.5rem}
 .f-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color var(--ease)}
 .f-links a:hover{color:var(--dark)}
-/* RESPONSIVE */
+
 @media(max-width:900px){
   .nav{padding:0 1.5rem}
   .nav-links{display:none}
@@ -147,7 +148,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
   <div class="hero-content">
     <p class="hero-label">Fotograf</p>
     <h1 class="hero-title">Edi <em>Antohe</em></h1>
-    <p class="hero-sub">Tanar fotograf din Galati, gata de a-ti pastra povestea in imagini care rămân pentru totdeauna</p>
+    <p class="hero-sub">Tanar fotograf din Galati, gata de a-ti pastra povestea in imagini care raman pentru totdeauna</p>
     <a href="#gallery" class="hero-cta">Vezi Portofoliul</a>
   </div>
   <div class="scroll-hint">
@@ -156,67 +157,24 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
   </div>
 </header>
 
-<div class="gallery-header">
-  <div class="filter-bar">
-    <button class="filter-btn active" data-f="all">Toate</button>
-    <button class="filter-btn" data-f="majorate">Majorate</button>
-    <button class="filter-btn" data-f="masini">Masini</button>
-    <button class="filter-btn" data-f="sedintefoto">Sedinte Foto</button>
-    <button class="filter-btn" data-f="sufletepereche">Suflete Pereche</button>
-    <button class="filter-btn" data-f="botez">Botez</button>
-    <button class="filter-btn" data-f="extra">Extra</button>
+<div class="gallery-header" id="galleryHeader">
+  <div class="filter-bar" id="filterBar">
+    <!-- buttons injected by JS -->
   </div>
 </div>
 
 <main class="gallery" id="gallery">
-<div class="gi tall" data-c="majorate" data-i="0">
-  <div class="gi-img" style="background:#000">
-    <img src="images/majorate/IMG_9819.jpg"
-         style="width:100%;height:100%;object-fit:cover;display:block;">
-  </div>
-  <div class="gi" data-c="landscape" data-i="1">
-    <div class="gi-img" style="background:linear-gradient(160deg,#7a9e9f,#3d5a5b)"><div class="ph l1"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Landscape</span><p class="gi-title">Morning Mist</p></div>
-  </div>
-  <div class="gi" data-c="editorial" data-i="2">
-    <div class="gi-img" style="background:linear-gradient(135deg,#c5b8a8,#8c7b68)"><div class="ph e1"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Editorial</span><p class="gi-title">White Linen</p></div>
-  </div>
-  <div class="gi wide" data-c="wedding" data-i="3">
-    <div class="gi-img" style="background:linear-gradient(170deg,#e8ddd0,#c4b09a)"><div class="ph w1"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Wedding</span><p class="gi-title">First Dance</p></div>
-  </div>
-  <div class="gi" data-c="portrait" data-i="4">
-    <div class="gi-img" style="background:linear-gradient(120deg,#b5c4c1,#718f8b)"><div class="ph p2"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Portrait</span><p class="gi-title">Studio Study</p></div>
-  </div>
-  <div class="gi" data-c="landscape" data-i="5">
-    <div class="gi-img" style="background:linear-gradient(155deg,#c9d4c5,#7d9475)"><div class="ph l2"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Landscape</span><p class="gi-title">Verdant Valley</p></div>
-  </div>
-  <div class="gi tall" data-c="editorial" data-i="6">
-    <div class="gi-img" style="background:linear-gradient(140deg,#d9c8c8,#9e7878)"><div class="ph e2"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Editorial</span><p class="gi-title">Autumn Bloom</p></div>
-  </div>
-  <div class="gi" data-c="wedding" data-i="7">
-    <div class="gi-img" style="background:linear-gradient(165deg,#ddd5c8,#b09e8a)"><div class="ph w2"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Wedding</span><p class="gi-title">Garden Vows</p></div>
-  </div>
-  <div class="gi" data-c="portrait" data-i="8">
-    <div class="gi-img" style="background:linear-gradient(130deg,#c4bfb0,#8a8270)"><div class="ph p3"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Portrait</span><p class="gi-title">Quiet Afternoon</p></div>
-  </div>
-  <div class="gi wide" data-c="landscape" data-i="9">
-    <div class="gi-img" style="background:linear-gradient(145deg,#b8ccd4,#6a93a3)"><div class="ph l3"></div></div>
-    <div class="gi-overlay"><span class="gi-cat">Landscape</span><p class="gi-title">Coastal Light</p></div>
-  </div>
+  <div class="gallery-loading" id="galleryLoading">Se incarca...</div>
 </main>
 
+<!-- LIGHTBOX -->
 <div class="lb" id="lb">
   <button class="lb-x" id="lbX">&#x2715;</button>
   <button class="lb-p" id="lbP">&#8592;</button>
   <button class="lb-n" id="lbN">&#8594;</button>
-  <div class="lb-img" id="lbImg"></div>
+  <div class="lb-inner" id="lbInner">
+    <img id="lbImg" src="" alt="">
+  </div>
   <div class="lb-info" id="lbInfo"></div>
 </div>
 
@@ -226,51 +184,208 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
     <p class="f-copy">&copy; 2026 Edi Antohe</p>
     <div class="f-links">
       <a href="#">Instagram</a>
-      <a href="#">Pinterest</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
 <script>
-// Nav scroll
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+// Category labels in Romanian (key = data-f value in photos.json)
+const CATEGORY_LABELS = {
+  all:            'Toate',
+  majorate:       'Majorate',
+  masini:         'Masini',
+  sedintefoto:    'Sedinte Foto',
+  sufletepereche: 'Suflete Pereche',
+  botez:          'Botez',
+  extra:          'Extra'
+};
 
-// Mobile menu
-const mm=document.getElementById('mm');
-document.getElementById('mBtn').onclick=()=>{mm.classList.add('open');document.body.style.overflow='hidden'};
-document.getElementById('mX').onclick=()=>{mm.classList.remove('open');document.body.style.overflow=''};
+// ── NAV SCROLL ───────────────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
 
-// Filter
-const btns=document.querySelectorAll('.filter-btn');
-const items=document.querySelectorAll('.gi');
-btns.forEach(b=>b.addEventListener('click',()=>{
-  btns.forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  const f=b.dataset.f;
-  items.forEach(i=>i.classList.toggle('hidden',f!=='all'&&i.dataset.c!==f));
-}));
+// ── MOBILE MENU ──────────────────────────────────────────────────────────────
+const mm = document.getElementById('mm');
+document.getElementById('mBtn').onclick = () => { mm.classList.add('open'); document.body.style.overflow = 'hidden'; };
+document.getElementById('mX').onclick   = () => { mm.classList.remove('open'); document.body.style.overflow = ''; };
 
-// Lightbox
-const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbInfo=document.getElementById('lbInfo');
-const data=[...items].map(i=>({bg:i.querySelector('.gi-img').style.background,cat:i.querySelector('.gi-cat').textContent,title:i.querySelector('.gi-title').textContent}));
-let cur=0;
-function show(i){cur=i;const d=data[i];lbImg.style.opacity=0;setTimeout(()=>{lbImg.style.background=d.bg;lbImg.style.opacity=1},150);lbInfo.innerHTML=`<div class="lb-icat">${d.cat}</div><div class="lb-ititle">${d.title}</div>`}
-function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
-function close(){lb.classList.remove('open');document.body.style.overflow=''}
-items.forEach(i=>i.addEventListener('click',()=>open(+i.dataset.i)));
-document.getElementById('lbX').onclick=close;
-document.getElementById('lbP').onclick=()=>show((cur-1+data.length)%data.length);
-document.getElementById('lbN').onclick=()=>show((cur+1)%data.length);
-lb.addEventListener('click',e=>{if(e.target===lb)close()});
-document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show((cur-1+data.length)%data.length);if(e.key==='ArrowRight')show((cur+1)%data.length)});
+// ── GALLERY ENGINE ───────────────────────────────────────────────────────────
+const gallery      = document.getElementById('gallery');
+const filterBar    = document.getElementById('filterBar');
+const loadingEl    = document.getElementById('galleryLoading');
 
-// Scroll reveal
-if('IntersectionObserver' in window){
-  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)';obs.unobserve(e.target)}}),{threshold:.1});
-  document.querySelectorAll('.gi').forEach(el=>{el.style.opacity=0;el.style.transform='translateY(16px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el)});
+let allPhotos  = [];   // full list from photos.json
+let visible    = [];   // currently visible photos (after filter)
+let activeFilter = 'all';
+
+// Size cycling — auto-assigns tall/wide/normal in a pleasant pattern
+// so you don't have to set "size" in JSON for every photo
+const SIZE_PATTERN = ['normal', 'normal', 'tall', 'normal', 'wide', 'normal', 'tall', 'normal', 'normal'];
+
+function getSize(photo, index) {
+  if (photo.size) return photo.size;          // explicit override wins
+  return SIZE_PATTERN[index % SIZE_PATTERN.length];
 }
+
+function buildGalleryItem(photo, index, globalIndex) {
+  const size = getSize(photo, index);
+  const div  = document.createElement('div');
+  div.className = 'gi' + (size === 'tall' ? ' tall' : size === 'wide' ? ' wide' : '');
+  div.dataset.c = photo.category;
+  div.dataset.i = globalIndex;
+
+  const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
+
+  div.innerHTML = `
+    <div class="gi-img">
+      <img src="${photo.src}" alt="${photo.title || catLabel}" loading="lazy">
+    </div>
+    <div class="gi-overlay">
+      <span class="gi-cat">${catLabel}</span>
+      <p class="gi-title">${photo.title || ''}</p>
+    </div>`;
+
+  div.addEventListener('click', () => openLightbox(globalIndex));
+  return div;
+}
+
+function renderGallery(photos) {
+  // clear previous items (keep loading div)
+  gallery.querySelectorAll('.gi').forEach(el => el.remove());
+  loadingEl.style.display = 'none';
+
+  if (photos.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'gallery-loading';
+    empty.textContent = 'Nicio fotografie in aceasta categorie.';
+    gallery.appendChild(empty);
+    return;
+  }
+
+  photos.forEach((photo, idx) => {
+    gallery.appendChild(buildGalleryItem(photo, idx, allPhotos.indexOf(photo)));
+  });
+
+  // Scroll reveal
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    gallery.querySelectorAll('.gi').forEach((el, i) => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity .5s ${i * 0.04}s ease, transform .5s ${i * 0.04}s ease`;
+      obs.observe(el);
+    });
+  }
+}
+
+function applyFilter(f) {
+  activeFilter = f;
+  visible = f === 'all' ? allPhotos : allPhotos.filter(p => p.category === f);
+  renderGallery(visible);
+  // update active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.f === f));
+}
+
+function buildFilterBar(photos) {
+  // collect unique categories in order of appearance
+  const seen = new Set();
+  const cats = [];
+  photos.forEach(p => { if (!seen.has(p.category)) { seen.add(p.category); cats.push(p.category); } });
+
+  filterBar.innerHTML = '';
+
+  // "Toate" always first
+  const allBtn = document.createElement('button');
+  allBtn.className = 'filter-btn active';
+  allBtn.dataset.f = 'all';
+  allBtn.textContent = CATEGORY_LABELS['all'];
+  allBtn.addEventListener('click', () => applyFilter('all'));
+  filterBar.appendChild(allBtn);
+
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.f = cat;
+    btn.textContent = CATEGORY_LABELS[cat] || cat;
+    btn.addEventListener('click', () => applyFilter(cat));
+    filterBar.appendChild(btn);
+  });
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────────────────────
+const lb     = document.getElementById('lb');
+const lbImg  = document.getElementById('lbImg');
+const lbInfo = document.getElementById('lbInfo');
+let lbCur    = 0;
+
+function showLb(globalIndex) {
+  lbCur = globalIndex;
+  const photo = allPhotos[globalIndex];
+  const visIdx = visible.indexOf(photo);
+  const total  = visible.length;
+
+  lbImg.style.opacity = 0;
+  lbImg.onload = () => { lbImg.style.opacity = 1; };
+  lbImg.src = photo.src;
+  lbImg.alt = photo.title || '';
+
+  const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
+  lbInfo.innerHTML = `
+    <div class="lb-icat">${catLabel}</div>
+    <div class="lb-ititle">${photo.title || ''}</div>
+    <div class="lb-counter">${visIdx + 1} / ${total}</div>`;
+}
+
+function openLightbox(globalIndex) {
+  showLb(globalIndex);
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+function lbStep(dir) {
+  // navigate within the currently visible (filtered) set
+  const visIdx = visible.indexOf(allPhotos[lbCur]);
+  const next   = (visIdx + dir + visible.length) % visible.length;
+  showLb(allPhotos.indexOf(visible[next]));
+}
+
+document.getElementById('lbX').onclick = closeLightbox;
+document.getElementById('lbP').onclick = () => lbStep(-1);
+document.getElementById('lbN').onclick = () => lbStep(1);
+lb.addEventListener('click', e => { if (e.target === lb || e.target.id === 'lbInner') closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   lbStep(-1);
+  if (e.key === 'ArrowRight')  lbStep(1);
+});
+
+// ── BOOT: fetch photos.json ───────────────────────────────────────────────────
+fetch('photos.json')
+  .then(r => {
+    if (!r.ok) throw new Error('photos.json not found');
+    return r.json();
+  })
+  .then(photos => {
+    allPhotos = photos;
+    buildFilterBar(photos);
+    applyFilter('all');
+  })
+  .catch(err => {
+    loadingEl.textContent = 'Eroare la incarcarea fotografiilor. Verifica photos.json.';
+    console.error(err);
+  });
 </script>
 </body>
 </html>
