@@ -1,40 +1,19 @@
 [
   {
-    "src": "images/majorate/IMG_9819.jpg",
+    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778409900/majorate/IMG_9819_rif8pb.jpg",
     "category": "majorate",
     "title": "Majorat 2024",
     "size": "tall"
   },
   {
-    "src": "images/majorate/IMG_9820.jpg",
+    "src": "https://drive.google.com/thumbnail?id=REPLACE_WITH_FILE_ID&sz=w1200",
     "category": "majorate",
     "title": "Seara de Gala"
   },
   {
-    "src": "images/masini/IMG_0001.jpg",
+    "src": "https://drive.google.com/thumbnail?id=REPLACE_WITH_FILE_ID&sz=w1200",
     "category": "masini",
     "title": "Drive",
     "size": "wide"
-  },
-  {
-    "src": "images/sedintefoto/IMG_0050.jpg",
-    "category": "sedintefoto",
-    "title": "Studio"
-  },
-  {
-    "src": "images/sufletepereche/IMG_0100.jpg",
-    "category": "sufletepereche",
-    "title": "Impreuna",
-    "size": "tall"
-  },
-  {
-    "src": "images/botez/IMG_0200.jpg",
-    "category": "botez",
-    "title": "Inceput de Viata"
-  },
-  {
-    "src": "images/extra/IMG_0300.jpg",
-    "category": "extra",
-    "title": "Moment"
   }
 ]
