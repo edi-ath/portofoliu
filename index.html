@@ -70,11 +70,13 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn.active::after{transform:scaleX(1)}
 
 /* GALLERY */
-.gallery{display:flex;gap:3px;padding:3px;background:var(--line);min-height:200px;align-items:flex-start}
-.masonry-col{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream)}
+.gallery{columns:5;gap:3px;padding:3px;background:var(--line);min-height:200px}
+.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream);break-inside:avoid;margin-bottom:3px}
+.gi.tall{grid-row:unset}
+.gi.wide{grid-column:unset}
 .gi-img{width:100%;position:relative;overflow:hidden}
-.gi-img img{width:100%;height:auto;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.gi.tall .gi-img{min-height:unset}
+.gi-img img{width:100%;height:auto;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
 .gi:hover .gi-img img{transform:scale(1.04)}
 .gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.72) 0%,rgba(28,26,23,0) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity var(--ease)}
 .gi:hover .gi-overlay{opacity:1}
@@ -226,19 +228,22 @@ let activeFilter = 'all';
 
 // Size cycling — auto-assigns tall/wide/normal in a pleasant pattern
 // so you don't have to set "size" in JSON for every photo
-const COLS = () => window.innerWidth > 1100 ? 5 : window.innerWidth > 900 ? 4 : window.innerWidth > 540 ? 3 : 2;
+const SIZE_PATTERN = ['normal'];
 
 function getSize(photo, index) {
   if (photo.size) return photo.size;          // explicit override wins
   return SIZE_PATTERN[index % SIZE_PATTERN.length];
 }
 
-function buildGalleryItem(photo, globalIndex) {
-  const div = document.createElement('div');
-  div.className = 'gi';
+function buildGalleryItem(photo, index, globalIndex) {
+  const size = getSize(photo, index);
+  const div  = document.createElement('div');
+  div.className = 'gi' + (size === 'tall' ? ' tall' : size === 'wide' ? ' wide' : '');
   div.dataset.c = photo.category;
   div.dataset.i = globalIndex;
+
   const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
+
   div.innerHTML = `
     <div class="gi-img">
       <img src="${photo.src}" alt="${photo.title || catLabel}" loading="lazy">
@@ -247,63 +252,47 @@ function buildGalleryItem(photo, globalIndex) {
       <span class="gi-cat">${catLabel}</span>
       <p class="gi-title">${photo.title || ''}</p>
     </div>`;
+
   div.addEventListener('click', () => openLightbox(globalIndex));
   return div;
 }
 
 function renderGallery(photos) {
-  gallery.innerHTML = '';
+  // clear previous items (keep loading div)
+  gallery.querySelectorAll('.gi').forEach(el => el.remove());
+  loadingEl.style.display = 'none';
 
   if (photos.length === 0) {
-    gallery.innerHTML = '<div class="gallery-loading">Nicio fotografie in aceasta categorie.</div>';
+    const empty = document.createElement('div');
+    empty.className = 'gallery-loading';
+    empty.textContent = 'Nicio fotografie in aceasta categorie.';
+    gallery.appendChild(empty);
     return;
   }
 
-  const cols = COLS();
-  const gap = 3;
-
-  // Create column divs
-  const colEls = Array.from({length: cols}, () => {
-    const c = document.createElement('div');
-    c.className = 'masonry-col';
-    gallery.appendChild(c);
-    return c;
-  });
-
-  // Track height of each column
-  const heights = new Array(cols).fill(0);
-
-  // Load each image, measure natural aspect ratio, place in shortest column
   photos.forEach((photo, idx) => {
-    const globalIndex = allPhotos.indexOf(photo);
-    const item = buildGalleryItem(photo, globalIndex);
-    const img = item.querySelector('img');
-
-    // Place in shortest column immediately (will reflow on load)
-    const shortest = heights.indexOf(Math.min(...heights));
-    colEls[shortest].appendChild(item);
-
-    // On image load, update column height tracking
-    img.addEventListener('load', () => {
-      const ratio = img.naturalHeight / img.naturalWidth;
-      const colWidth = colEls[shortest].offsetWidth;
-      heights[shortest] += colWidth * ratio + gap;
-    });
-
-    // Scroll reveal
-    item.style.opacity = 0;
-    item.style.transform = 'translateY(12px)';
-    item.style.transition = `opacity .5s ${idx * 0.03}s ease, transform .5s ${idx * 0.03}s ease`;
-    setTimeout(() => { item.style.opacity = 1; item.style.transform = 'translateY(0)'; }, 50 + idx * 30);
+    gallery.appendChild(buildGalleryItem(photo, idx, allPhotos.indexOf(photo)));
   });
-}
 
-// Re-render on resize to fix column count
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => applyFilter(activeFilter), 200);
-});
+  // Scroll reveal
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    gallery.querySelectorAll('.gi').forEach((el, i) => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity .5s ${i * 0.04}s ease, transform .5s ${i * 0.04}s ease`;
+      obs.observe(el);
+    });
+  }
+}
 
 function applyFilter(f) {
   activeFilter = f;
