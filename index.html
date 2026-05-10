@@ -70,13 +70,13 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn.active::after{transform:scaleX(1)}
 
 /* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;padding:3px;background:var(--line);min-height:200px;grid-auto-flow:dense}
-.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream)}
-.gi.tall{grid-row:span 2}
-.gi.wide{grid-column:span 2}
-.gi-img{width:100%;height:100%;min-height:180px;transition:transform .7s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
-.gi.tall .gi-img{min-height:360px}
-.gi-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.gallery{columns:5;gap:3px;padding:3px;background:var(--line);min-height:200px}
+.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream);break-inside:avoid;margin-bottom:3px}
+.gi.tall{grid-row:unset}
+.gi.wide{grid-column:unset}
+.gi-img{width:100%;position:relative;overflow:hidden}
+.gi.tall .gi-img{min-height:unset}
+.gi-img img{width:100%;height:auto;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
 .gi:hover .gi-img img{transform:scale(1.04)}
 .gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.72) 0%,rgba(28,26,23,0) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity var(--ease)}
 .gi:hover .gi-overlay{opacity:1}
@@ -113,21 +113,19 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .f-links a:hover{color:var(--dark)}
 
 @media(max-width:1100px){
-  .gallery{grid-template-columns:repeat(4,1fr)}
+  .gallery{columns:4}
 }
 @media(max-width:900px){
   .nav{padding:0 1.5rem}
   .nav-links{display:none}
   .nav-menu-btn{display:flex}
-  .gallery{grid-template-columns:repeat(3,1fr)}
-  .gi.wide{grid-column:span 2}
+  .gallery{columns:3}
   .footer{padding:2rem}
   .footer-inner{flex-direction:column;text-align:center}
   .gallery-header{padding:0 1rem}
 }
 @media(max-width:540px){
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .gi.tall,.gi.wide{grid-row:span 1;grid-column:span 1}
+  .gallery{columns:2}
 }
 </style>
 </head>
