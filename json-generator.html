@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>photos.json Generator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#1a1a1a;color:#e0e0e0;padding:2rem;min-height:100vh}
+h1{font-size:1.2rem;font-weight:500;margin-bottom:1.5rem;color:#fff}
+.row{display:grid;grid-template-columns:1fr 180px 1fr;gap:1rem;margin-bottom:.75rem;align-items:center}
+label{font-size:.75rem;color:#888;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.3rem}
+input,select,textarea{width:100%;background:#2a2a2a;border:1px solid #3a3a3a;color:#e0e0e0;padding:.5rem .75rem;border-radius:4px;font-size:.85rem;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#8a7460}
+.btn{background:#8a7460;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;font-size:.82rem;letter-spacing:.06em}
+.btn:hover{background:#7a6450}
+.btn-add{background:#2a2a2a;border:1px solid #3a3a3a;color:#888}
+.btn-add:hover{background:#333;color:#fff}
+.btn-del{background:none;border:none;color:#555;cursor:pointer;font-size:1rem;padding:.3rem}
+.btn-del:hover{color:#c44}
+.output{margin-top:1.5rem}
+textarea.out{height:220px;font-family:monospace;font-size:.78rem;color:#a0c8a0;background:#111;border-color:#2a2a2a}
+.actions{display:flex;gap:.75rem;margin-top:.75rem}
+.hint{font-size:.75rem;color:#555;margin-top:.5rem}
+#entries{margin-bottom:1rem}
+.entry{display:flex;gap:.75rem;align-items:flex-end;margin-bottom:.5rem;background:#222;padding:.75rem;border-radius:6px}
+.entry .f{flex:1}
+.cats{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.cat-chip{background:#2a2a2a;border:1px solid #3a3a3a;color:#888;padding:.3rem .75rem;border-radius:20px;font-size:.75rem;cursor:pointer}
+.cat-chip.active{background:#8a7460;border-color:#8a7460;color:#fff}
+</style>
+</head>
+<body>
+<h1>📷 photos.json Generator — Edi Antohe</h1>
+
+<div style="margin-bottom:1rem">
+  <label>Paste multiple Cloudinary URLs (one per line) + select category, then click Add All</label>
+  <div style="display:flex;gap:.75rem;margin-top:.5rem;align-items:flex-end">
+    <div style="flex:1">
+      <textarea id="bulkUrls" rows="5" placeholder="https://res.cloudinary.com/...&#10;https://res.cloudinary.com/...&#10;https://res.cloudinary.com/..."></textarea>
+    </div>
+    <div style="min-width:160px">
+      <label>Category</label>
+      <select id="bulkCat">
+        <option value="majorate">Majorate</option>
+        <option value="masini">Masini</option>
+        <option value="sedintefoto">Sedinte Foto</option>
+        <option value="sufletepereche">Suflete Pereche</option>
+        <option value="botez">Botez</option>
+        <option value="extra">Extra</option>
+      </select>
+    </div>
+    <button class="btn" onclick="addBulk()">Add All</button>
+  </div>
+</div>
+
+<div id="entries"></div>
+<button class="btn btn-add" onclick="addEntry()">+ Add single entry</button>
+
+<div class="output">
+  <label>Generated photos.json — copy this and replace your file on GitHub</label>
+  <textarea class="out" id="out" readonly></textarea>
+  <div class="actions">
+    <button class="btn" onclick="copyOut()">Copy to clipboard</button>
+    <button class="btn btn-add" onclick="clearAll()">Clear all</button>
+  </div>
+  <p class="hint">Tip: bookmark this page — it saves your entries in the browser while open.</p>
+</div>
+
+<script>
+let entries = [];
+
+function addBulk() {
+  const urls = document.getElementById('bulkUrls').value.trim().split('\n').map(u=>u.trim()).filter(Boolean);
+  const cat  = document.getElementById('bulkCat').value;
+  urls.forEach(url => entries.push({src: url, category: cat, title: ''}));
+  document.getElementById('bulkUrls').value = '';
+  render();
+}
+
+function addEntry() {
+  entries.push({src:'', category:'majorate', title:''});
+  render();
+}
+
+function removeEntry(i) {
+  entries.splice(i,1);
+  render();
+}
+
+function updateEntry(i, field, val) {
+  entries[i][field] = val;
+  updateOutput();
+}
+
+function render() {
+  const el = document.getElementById('entries');
+  el.innerHTML = entries.map((e,i) => `
+    <div class="entry">
+      <div class="f"><label>URL</label><input value="${e.src}" oninput="updateEntry(${i},'src',this.value)" placeholder="https://res.cloudinary.com/..."></div>
+      <div style="min-width:140px"><label>Category</label>
+        <select onchange="updateEntry(${i},'category',this.value)">
+          ${['majorate','masini','sedintefoto','sufletepereche','botez','extra'].map(c=>`<option value="${c}" ${e.category===c?'selected':''}>${c}</option>`).join('')}
+        </select>
+      </div>
+      <div style="min-width:120px"><label>Title (optional)</label><input value="${e.title}" oninput="updateEntry(${i},'title',this.value)" placeholder=""></div>
+      <button class="btn-del" onclick="removeEntry(${i})">✕</button>
+    </div>`).join('');
+  updateOutput();
+}
+
+function updateOutput() {
+  document.getElementById('out').value = JSON.stringify(entries, null, 2);
+}
+
+function copyOut() {
+  const t = document.getElementById('out');
+  t.select();
+  document.execCommand('copy');
+  alert('Copied! Now paste into photos.json on GitHub.');
+}
+
+function clearAll() {
+  if(confirm('Clear all entries?')) { entries=[]; render(); }
+}
+
+render();
+</script>
+</body>
+</html>
