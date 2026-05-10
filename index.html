@@ -70,18 +70,17 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn.active::after{transform:scaleX(1)}
 
 /* GALLERY */
-.gallery{columns:5;gap:3px;padding:3px;background:var(--line);min-height:200px}
-.gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream);break-inside:avoid;margin-bottom:3px}
-.gi.tall{grid-row:unset}
-.gi.wide{grid-column:unset}
-.gi-img{width:100%;position:relative;overflow:hidden}
-.gi.tall .gi-img{min-height:unset}
-.gi-img img{width:100%;height:auto;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+/* GALLERY */
+.gallery{display:flex;gap:3px;padding:3px;background:var(--line);min-height:200px;align-items:flex-start}
+.masonry-col{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.gi{position:relative;overflow:hidden;cursor:pointer;background:#1e1c1a}
+.gi-img{width:100%;position:relative;overflow:hidden;background:#1e1c1a}
+.gi-img img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
 .gi:hover .gi-img img{transform:scale(1.04)}
-.gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.72) 0%,rgba(28,26,23,0) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity var(--ease)}
+.gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.72) 0%,rgba(28,26,23,0) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;opacity:0;transition:opacity var(--ease)}
 .gi:hover .gi-overlay{opacity:1}
 .gi-cat{font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.25rem}
-.gi-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:#fff;font-style:italic}
+.gi-title{font-family:var(--serif);font-size:1.2rem;font-weight:300;color:#fff;font-style:italic}
 .gi.hidden{display:none}
 
 /* LOADING STATE */
@@ -119,13 +118,9 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
   .nav{padding:0 1.5rem}
   .nav-links{display:none}
   .nav-menu-btn{display:flex}
-  .gallery{columns:3}
   .footer{padding:2rem}
   .footer-inner{flex-direction:column;text-align:center}
   .gallery-header{padding:0 1rem}
-}
-@media(max-width:540px){
-  .gallery{columns:2}
 }
 </style>
 </head>
@@ -229,69 +224,70 @@ let activeFilter = 'all';
 
 // Size cycling — auto-assigns tall/wide/normal in a pleasant pattern
 // so you don't have to set "size" in JSON for every photo
-const SIZE_PATTERN = ['normal'];
+const COLS = () => window.innerWidth > 1100 ? 5 : window.innerWidth > 900 ? 4 : window.innerWidth > 540 ? 3 : 2;
 
-function getSize(photo, index) {
-  if (photo.size) return photo.size;          // explicit override wins
-  return SIZE_PATTERN[index % SIZE_PATTERN.length];
+const ratioCache = {};
+
+function getRatio(src) {
+  return new Promise(resolve => {
+    if (ratioCache[src]) return resolve(ratioCache[src]);
+    const img = new Image();
+    img.onload  = () => { ratioCache[src] = img.naturalHeight / img.naturalWidth; resolve(ratioCache[src]); };
+    img.onerror = () => { ratioCache[src] = 0.75; resolve(0.75); };
+    img.src = src;
+  });
 }
 
-function buildGalleryItem(photo, index, globalIndex) {
-  const size = getSize(photo, index);
-  const div  = document.createElement('div');
-  div.className = 'gi' + (size === 'tall' ? ' tall' : size === 'wide' ? ' wide' : '');
-  div.dataset.c = photo.category;
-  div.dataset.i = globalIndex;
-
-  const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
-
-  div.innerHTML = `
-    <div class="gi-img">
-      <img src="${photo.src}" alt="${photo.title || catLabel}" loading="lazy">
-    </div>
-    <div class="gi-overlay">
-      <span class="gi-cat">${catLabel}</span>
-      <p class="gi-title">${photo.title || ''}</p>
-    </div>`;
-
-  div.addEventListener('click', () => openLightbox(globalIndex));
-  return div;
-}
-
-function renderGallery(photos) {
-  // clear previous items (keep loading div)
-  gallery.querySelectorAll('.gi').forEach(el => el.remove());
-  loadingEl.style.display = 'none';
+async function renderGallery(photos) {
+  gallery.innerHTML = '<div class="gallery-loading">Se incarca...</div>';
 
   if (photos.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'gallery-loading';
-    empty.textContent = 'Nicio fotografie in aceasta categorie.';
-    gallery.appendChild(empty);
+    gallery.innerHTML = '<div class="gallery-loading">Nicio fotografie in aceasta categorie.</div>';
     return;
   }
 
-  photos.forEach((photo, idx) => {
-    gallery.appendChild(buildGalleryItem(photo, idx, allPhotos.indexOf(photo)));
-  });
+  await Promise.all(photos.slice(0, 15).map(p => getRatio(p.src)));
 
-  // Scroll reveal
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = 1;
-          e.target.style.transform = 'translateY(0)';
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.05 });
-    gallery.querySelectorAll('.gi').forEach((el, i) => {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(16px)';
-      el.style.transition = `opacity .5s ${i * 0.04}s ease, transform .5s ${i * 0.04}s ease`;
-      obs.observe(el);
-    });
+  gallery.innerHTML = '';
+  const cols = COLS();
+  const colEls = [];
+  const heights = new Array(cols).fill(0);
+
+  for (let c = 0; c < cols; c++) {
+    const col = document.createElement('div');
+    col.className = 'masonry-col';
+    gallery.appendChild(col);
+    colEls.push(col);
+  }
+
+  function placePhoto(photo) {
+    const globalIndex = allPhotos.indexOf(photo);
+    const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
+    const ratio = ratioCache[photo.src] || 0.75;
+    const shortest = heights.indexOf(Math.min(...heights));
+    heights[shortest] += ratio * 100;
+
+    const div = document.createElement('div');
+    div.className = 'gi';
+    div.dataset.c = photo.category;
+    div.dataset.i = globalIndex;
+    div.innerHTML = `
+      <div class="gi-img" style="padding-bottom:${(ratio * 100).toFixed(2)}%">
+        <img src="${photo.src}" alt="${photo.title || catLabel}" loading="lazy">
+      </div>
+      <div class="gi-overlay">
+        <span class="gi-cat">${catLabel}</span>
+        <p class="gi-title">${photo.title || ''}</p>
+      </div>`;
+    div.addEventListener('click', () => openLightbox(globalIndex));
+    colEls[shortest].appendChild(div);
+  }
+
+  photos.slice(0, 15).forEach(p => placePhoto(p));
+
+  for (const photo of photos.slice(15)) {
+    await getRatio(photo.src);
+    placePhoto(photo);
   }
 }
 
@@ -299,9 +295,14 @@ function applyFilter(f) {
   activeFilter = f;
   visible = f === 'all' ? allPhotos : allPhotos.filter(p => p.category === f);
   renderGallery(visible);
-  // update active button
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.f === f));
 }
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => applyFilter(activeFilter), 250);
+});
 
 function buildFilterBar(photos) {
   // collect unique categories in order of appearance
