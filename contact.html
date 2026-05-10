@@ -128,28 +128,28 @@ a.info-val:hover{color:var(--accent)}
       </div>
     </div>
     <div>
-      <form class="form" id="contactForm">
-        <div class="form-row">
-          <div class="fg"><label for="fn">Prenume</label><input id="fn" type="text" placeholder="Ion" required></div>
-          <div class="fg"><label for="ln">Nume</label><input id="ln" type="text" placeholder="Popescu"></div>
-        </div>
-        <div class="fg"><label for="em">E-mail</label><input id="em" type="email" placeholder="ionpopescu@example.com" required></div>
-        <div class="fg">
-          <label for="ty">Tip fotografie</label>
-          <select id="ty">
-            <option value="">Selecteaza o categorie</option>
-            <option>Sesiune Foto - Portret</option>
-            <option>Sesiune Foto - Auto</option>
-            <option>Majorat</option>
-            <option>Nunta/Cununie Civila</option>
-            <option>Botez/Petrecere Botez</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="fg"><label for="dt">Data evenimentului</label><input id="dt" type="text" placeholder="ex. 16.03.2007/Oricand disponibil"></div>
-        <div class="fg"><label for="msg">Mai multe detalii</label><textarea id="msg" rows="5" placeholder="Impartaseste cat de multe detalii doresti" required></textarea></div>
-        <button type="submit" class="btn" id="submitBtn">Trimite</button>
-        <p class="form-note">Mesajele sunt trimise direct catre mine. Raspund personal.</p>
+      <form class="form" id="contactForm" action="https://formspree.io/f/mjglpezy" method="POST">
+<div class="form-row">
+  <div class="fg"><label for="fn">Prenume</label><input id="fn" name="Prenume" type="text" placeholder="Ion" required></div>
+  <div class="fg"><label for="ln">Nume</label><input id="ln" name="Nume" type="text" placeholder="Popescu"></div>
+</div>
+<div class="fg"><label for="em">E-mail</label><input id="em" name="Email" type="email" placeholder="ionpopescu@example.com" required></div>
+<div class="fg">
+  <label for="ty">Tip fotografie</label>
+  <select id="ty" name="Tip_Fotografie">
+    <option value="">Selecteaza o categorie</option>
+    <option>Sesiune Foto - Portret</option>
+    <option>Sesiune Foto - Auto</option>
+    <option>Majorat</option>
+    <option>Nunta/Cununie Civila</option>
+    <option>Botez/Petrecere Botez</option>
+    <option>Other</option>
+  </select>
+</div>
+<div class="fg"><label for="dt">Data evenimentului</label><input id="dt" name="Data_Eveniment" type="text" placeholder="ex. 16.03.2007/Oricand disponibil"></div>
+<div class="fg"><label for="msg">Mai multe detalii</label><textarea id="msg" name="Mesaj" rows="5" placeholder="Impartaseste cat de multe detalii doresti" required></textarea></div>
+<button type="submit" class="btn" id="submitBtn">Trimite</button>
+<p class="form-note">Mesajele sunt trimise direct catre mine. Raspund personal.</p>
       </form>
       <div class="success" id="success">
         <div class="success-icon">&#10003;</div>
@@ -177,15 +177,6 @@ const mm=document.getElementById('mm');
 document.getElementById('mBtn').onclick=()=>{mm.classList.add('open');document.body.style.overflow='hidden'};
 document.getElementById('mX').onclick=()=>{mm.classList.remove('open');document.body.style.overflow=''};
 
-const form=document.getElementById('contactForm');
-const btn=document.getElementById('submitBtn');
-const suc=document.getElementById('success');
-form.addEventListener('submit',e=>{
-  e.preventDefault();
-  btn.textContent='Sending\u2026';
-  btn.disabled=true;
-  setTimeout(()=>{form.style.display='none';suc.style.display='block'},1200);
-});
 </script>
 </body>
 </html>
