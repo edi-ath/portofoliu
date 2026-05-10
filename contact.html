@@ -91,7 +91,7 @@ a.info-val:hover{color:var(--accent)}
 </style>
 </head>
 <body>
-
+  
 <nav class="nav">
   <a href="index.html" class="nav-logo">Edi Antohe</a>
   <ul class="nav-links">
@@ -130,11 +130,11 @@ a.info-val:hover{color:var(--accent)}
     <div>
       <form class="form" id="contactForm" action="https://formspree.io/f/mjglpezy" method="POST">
 <div class="form-row">
-  <div class="fg"><label for="fn">Prenume</label><input id="fn" name="Prenume" type="text" placeholder="Ion" required></div>
-  <div class="fg"><label for="ln">Nume</label><input id="ln" name="Nume" type="text" placeholder="Popescu"></div>
+  <div class="fg"><label for="fn">Prenume<span style="color: #ff0000;">*</span></label><input id="fn" name="Prenume" type="text" placeholder="Ion" required></div>
+  <div class="fg"><label for="ln">Nume<span style="color: #ff0000;">*</span></label><input id="ln" name="Nume" type="text" placeholder="Popescu" required></div>
 </div>
 <div class="fg"><label for="em">E-mail</label><input id="em" name="Email" type="email" placeholder="ionpopescu@example.com"></div>
-<div class="fg"><label for="em">Telefon</label><input id="em" name="Telefon" type="tel" placeholder="0741234567" required></div>
+<div class="fg"><label for="em">Telefon<span style="color: #ff0000;">*</span></label><input id="em" name="Telefon" type="tel" placeholder="0741234567" required></div>
 <div class="fg">
   <label for="ty">Tip fotografie</label>
   <select id="ty" name="Tip_Fotografie">
@@ -147,8 +147,8 @@ a.info-val:hover{color:var(--accent)}
     <option>Other</option>
   </select>
 </div>
-<div class="fg"><label for="dt">Data evenimentului</label><input id="dt" name="Data_Eveniment" type="text" placeholder="ex. 16.03.2007/Oricand disponibil"></div>
-<div class="fg"><label for="msg">Mai multe detalii</label><textarea id="msg" name="Mesaj" rows="5" placeholder="Impartaseste cat de multe detalii doresti" required></textarea></div>
+<div class="fg"><label for="dt">Data evenimentului<span style="color: #ff0000;">*</span></label><input id="dt" name="Data_Eveniment" type="text" placeholder="ex. 16.03.2007/Oricand disponibil" required></div>
+<div class="fg"><label for="msg">Mai multe detalii<span style="color: #ff0000;">*</span></label><textarea id="msg" name="Mesaj" rows="5" placeholder="Impartaseste cat de multe detalii doresti" required></textarea></div>
 <button type="submit" class="btn" id="submitBtn">Trimite</button>
 <p class="form-note">Mesajele sunt trimise direct catre mine. Raspund personal.</p>
       </form>
