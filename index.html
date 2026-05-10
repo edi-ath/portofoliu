@@ -70,7 +70,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn.active::after{transform:scaleX(1)}
 
 /* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;background:var(--line);min-height:200px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;background:var(--line);min-height:200px;grid-auto-flow:dense}
 .gi{position:relative;overflow:hidden;cursor:pointer;background:var(--cream)}
 .gi.tall{grid-row:span 2}
 .gi.wide{grid-column:span 2}
