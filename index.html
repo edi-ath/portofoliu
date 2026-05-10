@@ -226,30 +226,27 @@ let activeFilter = 'all';
 // so you don't have to set "size" in JSON for every photo
 const COLS = () => window.innerWidth > 1100 ? 5 : window.innerWidth > 900 ? 4 : window.innerWidth > 540 ? 3 : 2;
 
-const ratioCache = {};
+// Fixed ratio per category — no preloading needed, instant render
+// 0.667 = landscape 3:2 (most camera photos)
+// 1.5   = portrait  2:3
+const CATEGORY_RATIO = {
+  majorate:       0.667,
+  masini:         0.667,
+  sedintefoto:    1.5,
+  sufletepereche: 1.5,
+  botez:          0.667,
+  extra:          0.667,
+};
 
-function getRatio(src) {
-  return new Promise(resolve => {
-    if (ratioCache[src]) return resolve(ratioCache[src]);
-    const img = new Image();
-    img.onload  = () => { ratioCache[src] = img.naturalHeight / img.naturalWidth; resolve(ratioCache[src]); };
-    img.onerror = () => { ratioCache[src] = 0.75; resolve(0.75); };
-    img.src = src;
-  });
-}
-
-async function renderGallery(photos) {
-  gallery.innerHTML = '<div class="gallery-loading">Se incarca...</div>';
+function renderGallery(photos) {
+  gallery.innerHTML = '';
 
   if (photos.length === 0) {
     gallery.innerHTML = '<div class="gallery-loading">Nicio fotografie in aceasta categorie.</div>';
     return;
   }
 
-  await Promise.all(photos.slice(0, 15).map(p => getRatio(p.src)));
-
-  gallery.innerHTML = '';
-  const cols = COLS();
+  const cols   = COLS();
   const colEls = [];
   const heights = new Array(cols).fill(0);
 
@@ -260,11 +257,11 @@ async function renderGallery(photos) {
     colEls.push(col);
   }
 
-  function placePhoto(photo) {
+  photos.forEach(photo => {
     const globalIndex = allPhotos.indexOf(photo);
-    const catLabel = CATEGORY_LABELS[photo.category] || photo.category;
-    const ratio = ratioCache[photo.src] || 0.75;
-    const shortest = heights.indexOf(Math.min(...heights));
+    const catLabel    = CATEGORY_LABELS[photo.category] || photo.category;
+    const ratio       = CATEGORY_RATIO[photo.category] || 0.667;
+    const shortest    = heights.indexOf(Math.min(...heights));
     heights[shortest] += ratio * 100;
 
     const div = document.createElement('div');
@@ -281,14 +278,7 @@ async function renderGallery(photos) {
       </div>`;
     div.addEventListener('click', () => openLightbox(globalIndex));
     colEls[shortest].appendChild(div);
-  }
-
-  photos.slice(0, 15).forEach(p => placePhoto(p));
-
-  for (const photo of photos.slice(15)) {
-    await getRatio(photo.src);
-    placePhoto(photo);
-  }
+  });
 }
 
 function applyFilter(f) {
@@ -303,7 +293,6 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => applyFilter(activeFilter), 250);
 });
-
 function buildFilterBar(photos) {
   // collect unique categories in order of appearance
   const seen = new Set();
