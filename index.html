@@ -41,7 +41,7 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 
 /* HERO */
 .hero{height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;position:relative;background: url('https://res.cloudinary.com/doia7pbfh/image/upload/v1778411155/IMG_6628_w1i24l.jpg') center/cover no-repeat;}overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(196,176,154,.25) 0%,transparent 70%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(196,176,154,.25) 0%,transparent 70%);background: rgba(28, 26, 23, 0.4);}
 .hero-content{text-align:center;position:relative;z-index:2;animation:fade 1.2s ease forwards}
 @keyframes fade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-label{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem}
