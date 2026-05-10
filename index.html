@@ -230,7 +230,7 @@ let activeFilter = 'all';
 
 // Size cycling — auto-assigns tall/wide/normal in a pleasant pattern
 // so you don't have to set "size" in JSON for every photo
-const SIZE_PATTERN = ['normal', 'normal', 'tall', 'normal', 'wide', 'normal', 'tall', 'normal', 'normal'];
+const SIZE_PATTERN = ['normal'];
 
 function getSize(photo, index) {
   if (photo.size) return photo.size;          // explicit override wins
