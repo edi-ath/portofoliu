@@ -326,10 +326,11 @@ window.addEventListener('resize', () => {
 });
   
 function buildFilterBar(photos) {
-  // collect unique categories in order of appearance
-  const seen = new Set();
-  const cats = [];
-  photos.forEach(p => { if (!seen.has(p.category)) { seen.add(p.category); cats.push(p.category); } });
+  // Fixed display order for categories
+  const CATEGORY_ORDER = ['majorate', 'sedintefoto', 'masini', 'sufletepereche', 'botez', 'extra'];
+
+  // Collect which categories actually have photos
+  const present = new Set(photos.map(p => p.category));
 
   filterBar.innerHTML = '';
 
@@ -341,13 +342,26 @@ function buildFilterBar(photos) {
   allBtn.addEventListener('click', () => applyFilter('all'));
   filterBar.appendChild(allBtn);
 
-  cats.forEach(cat => {
+  CATEGORY_ORDER.forEach(cat => {
+    if (!present.has(cat)) return; // skip empty categories
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
     btn.dataset.f = cat;
     btn.textContent = CATEGORY_LABELS[cat] || cat;
     btn.addEventListener('click', () => applyFilter(cat));
     filterBar.appendChild(btn);
+  });
+
+  // Any categories not in CATEGORY_ORDER get appended at the end
+  present.forEach(cat => {
+    if (!CATEGORY_ORDER.includes(cat)) {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.dataset.f = cat;
+      btn.textContent = CATEGORY_LABELS[cat] || cat;
+      btn.addEventListener('click', () => applyFilter(cat));
+      filterBar.appendChild(btn);
+    }
   });
 }
 
