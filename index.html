@@ -221,9 +221,9 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 const CATEGORY_LABELS = {
   all:            'Toate',
   majorate:       'Majorate',
+  sufletepereche: 'Suflete Pereche',
   sedintefoto:    'Sedinte Foto',
   masini:         'Masini',
-  sufletepereche: 'Suflete Pereche',
   botez:          'Botez',
   extra:          'Extra'
 };
@@ -327,7 +327,7 @@ window.addEventListener('resize', () => {
   
 function buildFilterBar(photos) {
   // Fixed display order for categories
-  const CATEGORY_ORDER = ['majorate', 'sedintefoto', 'masini', 'sufletepereche', 'botez', 'extra'];
+  const CATEGORY_ORDER = ['majorate', 'sufletepereche', 'sedintefoto', 'masini', 'botez', 'extra'];
 
   // Collect which categories actually have photos
   const present = new Set(photos.map(p => p.category));
