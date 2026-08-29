@@ -72,6 +72,43 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .nav:not(.scrolled) .nav-links a::after{background:#fff}
 .nav:not(.scrolled) .nav-menu-btn span{background:#fff}
 
+/* PORTFOLIO TOGGLE */
+.portfolio-toggle{display:flex;justify-content:center;gap:0;padding:1.5rem 0 0;background:var(--warm)}
+.toggle-btn{background:none;border:none;border-bottom:2px solid transparent;font-family:var(--sans);font-size:.78rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);cursor:pointer;padding:.75rem 2rem;transition:color var(--ease),border-color var(--ease)}
+.toggle-btn.active{color:var(--dark);border-bottom-color:var(--dark)}
+.toggle-btn:hover{color:var(--dark)}
+
+/* VIDEO GALLERY */
+.video-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;background:var(--line);min-height:200px}
+.vi{position:relative;cursor:pointer;background:#1e1c1a;overflow:hidden}
+.vi-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.vi-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.vi:hover .vi-thumb img{transform:scale(1.04)}
+.vi-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);transition:background var(--ease)}
+.vi:hover .vi-play{background:rgba(0,0,0,.45)}
+.vi-play svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));transition:transform var(--ease)}
+.vi:hover .vi-play svg{transform:scale(1.1)}
+.vi-info{padding:.75rem 1rem;background:#1e1c1a}
+.vi-title{font-family:var(--serif);font-size:.95rem;font-weight:300;color:rgba(255,255,255,.85);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vi-cat{font-family:var(--sans);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+
+/* VIDEO LIGHTBOX */
+.vlb{position:fixed;inset:0;background:rgba(10,8,6,.97);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.vlb.open{opacity:1;pointer-events:all}
+.vlb-x{position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1.4rem;padding:1rem;transition:color .2s}
+.vlb-x:hover{color:#fff}
+.vlb-frame{width:min(90vw,960px);aspect-ratio:16/9;border-radius:2px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.vlb-frame iframe{width:100%;height:100%;border:none}
+
+@media(max-width:900px){
+  .video-gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:540px){
+  .video-gallery{grid-template-columns:1fr}
+  .portfolio-toggle{padding:1rem 0 0}
+  .toggle-btn{padding:.6rem 1.25rem;font-size:.7rem}
+}
+  
 /* FILTER BAR */
 .gallery-header{padding:0 3rem;position:sticky;top:var(--nav);z-index:50;background:var(--warm);border-bottom:1px solid var(--line)}
 .filter-bar{display:flex;overflow-x:auto;scrollbar-width:none}
@@ -173,15 +210,27 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
     <a href="#gallery" class="hero-cta">Vezi Portofoliul</a>
 </header>
 
-<div class="gallery-header" id="galleryHeader">
-  <div class="filter-bar" id="filterBar">
-    <!-- buttons injected by JS -->
+<div id="portfolioToggleWrap" style="background:var(--warm);position:sticky;top:var(--nav);z-index:51;border-bottom:1px solid var(--line)">
+  <div class="portfolio-toggle">
+    <button class="toggle-btn active" id="btnPhoto">Fotografie</button>
+    <button class="toggle-btn" id="btnVideo">Videografie</button>
+  </div>
+  <div class="gallery-header" id="galleryHeader" style="border-bottom:none">
+    <div class="filter-bar" id="filterBar"></div>
   </div>
 </div>
 
 <main class="gallery" id="gallery">
   <div class="gallery-loading" id="galleryLoading">Se incarca...</div>
 </main>
+
+<div class="video-gallery" id="videoGallery" style="display:none"></div>
+
+<!-- VIDEO LIGHTBOX -->
+<div class="vlb" id="vlb">
+  <button class="vlb-x" id="vlbX">&#x2715;</button>
+  <div class="vlb-frame" id="vlbFrame"></div>
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lb" id="lb">
@@ -431,6 +480,85 @@ lb.addEventListener('touchend', e => {
   if (dy > 80 && Math.abs(dx) < 40) closeLightbox();
 }, {passive: true});
 
+// ── VIDEO DATA ────────────────────────────────────────────────────────────────
+// Add your YouTube videos here — youtubeId is the part after ?v= in the URL
+const VIDEOS = [
+  { youtubeId: 'M0opHMeBwqM', title: 'Cosmina & Dumitru-Daniel', category: 'sufletepereche' },
+  { youtubeId: 'SDjZpSudRtk', title: 'Lucian & Cristina', category: 'sufletepereche' },
+];
+
+// ── VIDEO GALLERY ─────────────────────────────────────────────────────────────
+const videoGallery = document.getElementById('videoGallery');
+const vlb          = document.getElementById('vlb');
+const vlbFrame     = document.getElementById('vlbFrame');
+
+function renderVideos() {
+  videoGallery.innerHTML = '';
+  if (VIDEOS.length === 0) {
+    videoGallery.innerHTML = '<div class="gallery-loading">Niciun videoclip momentan.</div>';
+    return;
+  }
+  VIDEOS.forEach(v => {
+    const thumb = `https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg`;
+    const div = document.createElement('div');
+    div.className = 'vi';
+    div.innerHTML = `
+      <div class="vi-thumb">
+        <img src="${thumb}" alt="${v.title}" loading="lazy">
+        <div class="vi-play">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.15)"/>
+            <polygon points="22,18 42,28 22,38" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class="vi-info">
+        <div class="vi-title">${v.title}</div>
+        <div class="vi-cat">${CATEGORY_LABELS[v.category] || v.category}</div>
+      </div>`;
+    div.addEventListener('click', () => openVideo(v.youtubeId));
+    videoGallery.appendChild(div);
+  });
+}
+
+function openVideo(id) {
+  vlbFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  vlb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+  vlb.classList.remove('open');
+  vlbFrame.innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('vlbX').onclick = closeVideo;
+vlb.addEventListener('click', e => { if (e.target === vlb) closeVideo(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && vlb.classList.contains('open')) closeVideo(); });
+
+// ── TOGGLE LOGIC ──────────────────────────────────────────────────────────────
+const btnPhoto = document.getElementById('btnPhoto');
+const btnVideo = document.getElementById('btnVideo');
+const galleryEl = document.getElementById('gallery');
+const galleryHeaderEl = document.getElementById('galleryHeader');
+
+btnPhoto.addEventListener('click', () => {
+  btnPhoto.classList.add('active');
+  btnVideo.classList.remove('active');
+  galleryEl.style.display = 'flex';
+  galleryHeaderEl.style.display = 'block';
+  videoGallery.style.display = 'none';
+});
+
+btnVideo.addEventListener('click', () => {
+  btnVideo.classList.add('active');
+  btnPhoto.classList.remove('active');
+  galleryEl.style.display = 'none';
+  galleryHeaderEl.style.display = 'none';
+  videoGallery.style.display = 'grid';
+  renderVideos();
+});
+  
 // ── BOOT: fetch photos.json ───────────────────────────────────────────────────
 fetch('photos.json')
   .then(r => {
