@@ -574,6 +574,11 @@ fetch('photos.json')
     loadingEl.textContent = 'Eroare la incarcarea fotografiilor. Verifica photos.json.';
     console.error(err);
   });
+
+  // ── DEEP LINK: ediantohe.com/video ───────────────────────────────────────────
+if (window.location.pathname.includes('/video') || window.location.hash === '#video') {
+  btnVideo.click();
+}
 </script>
 </body>
 </html>
