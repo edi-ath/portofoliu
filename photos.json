@@ -50,11 +50,6 @@
     "title": ""
   },
   {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778409895/majorate/IMG_9256_pekdgs.jpg",
-    "category": "majorate",
-    "title": ""
-  },
-  {
     "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778409899/majorate/IMG_9374_iwhnwi.jpg",
     "category": "majorate",
     "title": ""
@@ -186,6 +181,11 @@
   },
   {
     "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778409888/majorate/IMG_5864_pl5mqo.jpg",
+    "category": "majorate",
+    "title": ""
+  },
+  {
+    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778409895/majorate/IMG_9256_pekdgs.jpg",
     "category": "majorate",
     "title": ""
   },
@@ -454,11 +454,6 @@
     "category": "sedintefoto",
     "title": ""
   },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778432240/IMG_1856_ixv1ja.jpg",
-    "category": "sedintefoto",
-    "title": ""
-  },
    {
     "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428242/IMG_3113_qfapqk.jpg",
     "category": "masini",
@@ -601,26 +596,6 @@
   },
   {
     "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428228/IMG_1999_pr8ote.jpg",
-    "category": "masini",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428229/IMG_2042_xm1ilj.jpg",
-    "category": "masini",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428231/IMG_2096_3_eds1bd.jpg",
-    "category": "masini",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428232/IMG_2103_rhvqkh.jpg",
-    "category": "masini",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778428224/IMG_1469_a4tnp2.jpg",
     "category": "masini",
     "title": ""
   },
@@ -916,26 +891,6 @@
   },
   {
     "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778435563/IMG_7912_bt7bcv.jpg",
-    "category": "extra",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778435557/IMG_7884_z4l3wu.jpg",
-    "category": "extra",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778435565/IMG_7958_ichjxt.jpg",
-    "category": "extra",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778435566/IMG_7966_ki98oj.jpg",
-    "category": "extra",
-    "title": ""
-  },
-  {
-    "src": "https://res.cloudinary.com/doia7pbfh/image/upload/v1778435570/IMG_7959_mbu1gu.jpg",
     "category": "extra",
     "title": ""
   },
