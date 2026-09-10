@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/doia7pbfh/image/upload/v1780296559/IMG_20260531_223624_895-modified_feyrho.png">
+  <!-- SEO & Social preview -->
+<meta name="description" content="Edi Antohe — Tanar fotograf din Galati. Majorate, masini, sedinte foto, evenimente.">
+<meta property="og:title" content="Edi Antohe — Fotograf">
+<meta property="og:description" content="Tanar fotograf din Galati, gata de a-ti pastra povestea in imagini care raman pentru totdeauna!">
+<meta property="og:image" content="https://res.cloudinary.com/doia7pbfh/image/upload/v1780296559/IMG_20260531_223624_895-modified_feyrho.png">
+<meta property="og:url" content="https://ediantohe.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://res.cloudinary.com/doia7pbfh/image/upload/v1780296559/IMG_20260531_223624_895-modified_feyrho.png">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact - Edi Antohe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#f7f4ef;--warm:#fdfcfa;--dark:#1c1a17;--mid:#6b6760;--line:#d4d0c8;
+  --accent:#8a7460;--accent-l:#c4b09a;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --nav:64px;--ease:.4s cubic-bezier(.25,.46,.45,.94)
+}
+html{scroll-behavior:smooth}
+body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;z-index:100;background:rgba(253,252,250,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:.25em;color:var(--dark);text-decoration:none}
+.nav-links{display:flex;list-style:none;gap:2.5rem}
+.nav-links a{font-family:var(--sans);font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;position:relative;transition:color var(--ease)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--dark);transform:scaleX(0);transition:transform var(--ease);transform-origin:left}
+.nav-links a:hover,.nav-links a.active{color:var(--dark)}
+.nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
+.nav-menu-btn{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-menu-btn span{display:block;width:24px;height:1px;background:var(--dark)}
+.mm{position:fixed;inset:0;background:var(--warm);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform .5s cubic-bezier(.76,0,.24,1)}
+.mm.open{transform:translateY(0)}
+.mm ul{list-style:none;text-align:center}
+.mm ul li{margin:1.5rem 0}
+.mm ul li a{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--dark);text-decoration:none;transition:opacity var(--ease)}
+.mm ul li a:hover{opacity:.5}
+.mm-x{position:absolute;top:1.5rem;right:2rem;font-size:1.2rem;background:none;border:none;cursor:pointer;color:var(--mid)}
+/* CONTACT LAYOUT */
+.contact-wrap{min-height:100vh;display:flex;align-items:center;padding:calc(var(--nav) + 4rem) 4rem 4rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;max-width:1100px;margin:0 auto;width:100%}
+/* LEFT */
+.label{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:.75rem}
+.big-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem}
+.big-title em{font-style:italic;color:var(--accent)}
+.intro{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--mid);margin-bottom:2.5rem;line-height:1.7}
+.info-block{margin-bottom:2.5rem}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.85rem}
+.info-label{color:var(--mid);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.info-val{color:var(--dark);text-decoration:none;transition:color var(--ease)}
+a.info-val:hover{color:var(--accent)}
+.socials{display:flex;gap:2rem}
+.socials a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color var(--ease)}
+.socials a:hover{color:var(--dark)}
+/* FORM */
+.form{display:flex;flex-direction:column;gap:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.fg{display:flex;flex-direction:column;gap:.5rem}
+.fg label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)}
+.fg input,.fg select,.fg textarea{font-family:var(--sans);font-size:.88rem;font-weight:300;color:var(--dark);background:transparent;border:none;border-bottom:1px solid var(--line);padding:.6rem 0;outline:none;transition:border-color var(--ease);-webkit-appearance:none;width:100%}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--line)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-bottom-color:var(--dark)}
+.fg textarea{resize:vertical;min-height:100px}
+.fg select option{background:var(--warm);color:var(--dark)}
+.form-note{font-size:.72rem;color:var(--mid)}
+.btn{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);background:var(--dark);text-decoration:none;padding:1rem 2.5rem;border:none;cursor:pointer;transition:background var(--ease),letter-spacing var(--ease);align-self:flex-start;margin-top:.5rem}
+.btn:hover{background:var(--accent);letter-spacing:.22em}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+/* SUCCESS */
+.success{display:none;text-align:center;padding:4rem 2rem}
+.success-icon{width:56px;height:56px;border:1px solid var(--accent-l);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.2rem;color:var(--accent)}
+.success h3{font-family:var(--serif);font-weight:300;font-size:1.5rem;margin-bottom:.75rem}
+.success p{color:var(--mid);font-size:.88rem}
+/* FOOTER */
+.footer{padding:3rem 4rem;border-top:1px solid var(--line);background:var(--warm)}
+.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.2em;color:var(--dark)}
+.f-copy{font-size:.75rem;color:var(--line)}
+.f-links{display:flex;gap:1.5rem}
+.f-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color var(--ease)}
+.f-links a:hover{color:var(--dark)}
+@media(max-width:900px){
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-menu-btn{display:flex}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .contact-wrap{padding:calc(var(--nav) + 2rem) 2rem 2rem}
+  .footer{padding:2rem}
+  .fi{flex-direction:column;text-align:center}
+}
+@media(max-width:540px){
+  .form-row{grid-template-columns:1fr}
+}
+.f-links a svg{display:block;transition:color var(--ease)}
+.f-links a{color:var(--mid)}
+.f-links a:hover{color:var(--dark)}
+</style>
+</head>
+<body>
+  
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Edi Antohe</a>
+  <ul class="nav-links">
+    <li><a href="/">Portfoliu</a></li>
+    <li><a href="/about/">Despre Mine</a></li>
+    <li><a href="/contact/" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="mBtn" aria-label="Open menu"><span></span><span></span></button>
+</nav>
+
+<div class="mm" id="mm">
+  <button class="mm-x" id="mX">&#x2715;</button>
+  <ul>
+    <li><a href="/">Portfoliu</a></li>
+    <li><a href="/about/">Despre Mine</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-grid">
+    <div>
+      <p class="label">Hai sa lucram impreuna!</p>
+      <h1 class="big-title">Contacteaza-ma <em>acum</em></h1>
+      <p class="intro">Chiar daca planuiesti doar o simpla sedinta foto sau chiar un eveniment, imi doresc sa iau parte!</p>
+      <div class="info-block">
+        <div class="info-row"><span class="info-label">Whastapp</span><a href="https://wa.me/+40748765991 " class="info-val">0748765991</a></div>
+        <div class="info-row"><span class="info-label">Locatie</span><span class="info-val">Galati, Romania</span></div>
+        <div class="info-row"><span class="info-label">Timp de raspuns</span><span class="info-val">Max. 48 ore</span></div>
+      </div>
+      <div class="socials">
+        <a href="https://instagram.com/edi.visions">Instagram</a>
+        <a href="https://facebook.com/ediantohe">Facebook</a>
+      </div>
+    </div>
+    <div>
+      <form class="form" id="contactForm" action="https://formspree.io/f/mjglpezy" method="POST">
+<div class="form-row">
+  <div class="fg"><label for="fn">Prenume<span style="color: #ff0000;">*</span></label><input id="fn" name="Prenume" type="text" placeholder="Ion" required></div>
+  <div class="fg"><label for="ln">Nume<span style="color: #ff0000;">*</span></label><input id="ln" name="Nume" type="text" placeholder="Popescu" required></div>
+</div>
+<div class="fg"><label for="em">Telefon<span style="color: #ff0000;">*</span></label><input id="em" name="Telefon" type="tel" placeholder="0741234567" required></div>
+<div class="fg"><label for="em">E-mail</label><input id="em" name="Email" type="email" placeholder="ionpopescu@example.com"></div>
+<div class="fg">
+  <label for="ty">Tip fotografie</label>
+  <select id="ty" name="Tip_Fotografie">
+    <option value="">Selecteaza o categorie</option>
+    <option>Sesiune Foto - Portret</option>
+    <option>Sesiune Foto - Auto</option>
+    <option>Majorat</option>
+    <option>Nunta/Cununie Civila</option>
+    <option>Botez/Petrecere Botez</option>
+    <option>Other</option>
+  </select>
+</div>
+<div class="fg"><label for="dt">Data evenimentului<span style="color: #ff0000;">*</span></label><input id="dt" name="Data_Eveniment" type="text" placeholder="ex. 16.03.2007/Oricand disponibil" required></div>
+<div class="fg"><label for="msg">Mai multe detalii<span style="color: #ff0000;">*</span></label><textarea id="msg" name="Mesaj" rows="5" placeholder="Impartaseste cat de multe detalii doresti" required></textarea></div>
+<button type="submit" class="btn" id="submitBtn">Trimite</button>
+<p class="form-note">Mesajele sunt trimise direct catre mine. Raspund personal.</p>
+      </form>
+      <div class="success" id="success">
+        <div class="success-icon">&#10003;</div>
+        <h3>Mesaj primit</h3>
+        <p>Multumesc pentru interesul acordat. O sa revin cu un raspuns in maxim 48 ore.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="fi">
+    <p class="f-logo">Edi Antohe</p>
+    <p class="f-copy">&copy; 2026 Edi Antohe</p>
+<div class="f-links">
+  <a href="https://instagram.com/edi.visions" aria-label="Instagram" title="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+  </a>
+  <a href="https://www.facebook.com/ediantohe" aria-label="Facebook" title="Facebook">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+  </a>
+  <a href="https://wa.me/+40748765991" aria-label="WhatsApp" title="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</a>
+</div>
+  </div>
+</footer>
+
+<script>
+const mm=document.getElementById('mm');
+document.getElementById('mBtn').onclick=()=>{mm.classList.add('open');document.body.style.overflow='hidden'};
+document.getElementById('mX').onclick=()=>{mm.classList.remove('open');document.body.style.overflow=''};
+
+</script>
+</body>
+</html>
