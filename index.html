@@ -552,12 +552,19 @@ const btnVideo = document.getElementById('btnVideo');
 const galleryEl = document.getElementById('gallery');
 const galleryHeaderEl = document.getElementById('galleryHeader');
 
+function triggerFade(el) {
+  el.classList.remove('switching');
+  void el.offsetWidth; // force reflow
+  el.classList.add('switching');
+}
+
 btnPhoto.addEventListener('click', () => {
   btnPhoto.classList.add('active');
   btnVideo.classList.remove('active');
-  galleryEl.style.display = 'flex';
-  galleryHeaderEl.style.display = 'block';
   videoGallery.style.display = 'none';
+  galleryHeaderEl.style.display = 'block';
+  galleryEl.style.display = 'flex';
+  triggerFade(galleryEl);
 });
 
 btnVideo.addEventListener('click', () => {
@@ -567,6 +574,7 @@ btnVideo.addEventListener('click', () => {
   galleryHeaderEl.style.display = 'none';
   videoGallery.style.display = 'grid';
   renderVideos();
+  triggerFade(videoGallery);
 });
   
 // ── BOOT: fetch photos.json ───────────────────────────────────────────────────
