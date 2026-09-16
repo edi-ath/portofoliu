@@ -183,6 +183,11 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .f-links a svg{display:block;transition:color var(--ease)}
 .f-links a{color:var(--mid);text-decoration:none;transition:color var(--ease);display:block}
 .f-links a:hover{color:var(--dark)}
+
+/* PAGE TRANSITION */
+body{animation:pageFade .4s ease forwards}
+@keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
 </style>
 </head>
 <body>
@@ -600,6 +605,18 @@ fetch('photos.json')
 if (window.location.pathname.includes('/video') || window.location.hash === '#video') {
   btnVideo.click();
 }
+
+// Page exit animation
+document.querySelectorAll('a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('https')) return;
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.body.style.animation = 'pageFade .3s ease reverse forwards';
+    setTimeout(() => { window.location.href = href; }, 280);
+  });
+});
+  
 </script>
 </body>
 </html>
