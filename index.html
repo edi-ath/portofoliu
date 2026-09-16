@@ -323,6 +323,7 @@ function getRatio(src) {
 }
 
 async function renderGallery(photos) {
+  return new Promise(async resolve => {
   gallery.innerHTML = '<div class="gallery-loading">Se incarca...</div>';
 
   if (photos.length === 0) {
@@ -369,12 +370,14 @@ async function renderGallery(photos) {
     div.addEventListener('click', () => openLightbox(globalIndex));
     colEls[shortest].appendChild(div);
   });
+        resolve();
+  });
 }
 
 function applyFilter(f) {
   activeFilter = f;
   visible = f === 'all' ? allPhotos : allPhotos.filter(p => p.category === f);
-  renderGallery(visible);
+  renderGallery(visible).then(() => triggerFade(galleryEl));
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.f === f));
 }
 
