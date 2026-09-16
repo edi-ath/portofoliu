@@ -121,6 +121,11 @@ body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:
   .footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
   .f-links{justify-content:center}
 }
+
+  /* PAGE TRANSITION */
+body{animation:pageFade .4s ease forwards}
+@keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  
 </style>
 </head>
 <body>
@@ -230,6 +235,18 @@ if('IntersectionObserver' in window){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)';obs.unobserve(e.target)}}),{threshold:.1});
   document.querySelectorAll('.svc,.about-grid').forEach(el=>{el.style.opacity=0;el.style.transform='translateY(20px)';el.style.transition='opacity .7s ease,transform .7s ease';obs.observe(el)});
 }
+
+// Page exit animation
+document.querySelectorAll('a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('https')) return;
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.body.style.animation = 'pageFade .3s ease reverse forwards';
+    setTimeout(() => { window.location.href = href; }, 280);
+  });
+});
+  
 </script>
 </body>
 </html>
