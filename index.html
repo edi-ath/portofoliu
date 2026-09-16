@@ -118,7 +118,11 @@ body{background:var(--warm);color:var(--dark);font-family:var(--sans);font-weigh
 .filter-btn.active,.filter-btn:hover{color:var(--dark)}
 .filter-btn.active::after{transform:scaleX(1)}
 
-/* GALLERY */
+/* TOGGLE TRANSITION */
+.gallery,.video-gallery{animation:none}
+.gallery.switching,.video-gallery.switching{animation:sectionFade .4s ease forwards}
+@keyframes sectionFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  
 /* GALLERY */
 .gallery{display:flex;gap:3px;padding:3px;background:var(--line);min-height:200px;align-items:flex-start}
 .masonry-col{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
