@@ -182,10 +182,6 @@ body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:
   .plb-thumb{width:48px;height:48px}
 }
 
-/* PAGE TRANSITION */
-body{opacity:0;animation:pageFade .4s ease forwards}
-@keyframes pageFade{from{opacity:0}to{opacity:1}}
-  
 </style>
 </head>
 <body>
@@ -458,16 +454,6 @@ fetch('photos-imobiliare.json')
   .then(data => { properties = data; renderProperties(data); })
   .catch(() => renderProperties([]));
 
-// Page exit animation
-document.querySelectorAll('a').forEach(a => {
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('https')) return;
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    document.body.style.animation = 'pageFade .3s ease reverse forwards';
-    setTimeout(() => { window.location.href = href; }, 280);
-  });
-});
   
 </script>
 </body>
