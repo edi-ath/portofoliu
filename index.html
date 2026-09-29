@@ -283,8 +283,8 @@ const CATEGORY_LABELS = {
   majorate:       'Majorate',
   sufletepereche: 'Suflete Pereche',
   sedintefoto:    'Sedinte Foto',
-  masini:         'Masini',
   botez:          'Botez',
+  masini:         'Masini',
   extra:          'Extra'
 };
 
@@ -390,7 +390,7 @@ window.addEventListener('resize', () => {
   
 function buildFilterBar(photos) {
   // Fixed display order for categories
-  const CATEGORY_ORDER = ['majorate', 'sufletepereche', 'sedintefoto', 'masini', 'botez', 'extra'];
+  const CATEGORY_ORDER = ['majorate', 'sufletepereche', 'sedintefoto', 'botez', 'masini', 'extra'];
 
   // Collect which categories actually have photos
   const present = new Set(photos.map(p => p.category));
